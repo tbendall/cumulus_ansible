@@ -1,0 +1,15 @@
+---
+
+hostname: "leaf2"
+lo_ip: "10.10.10.2/32"
+bgp_asn: '65101'
+bgp_routerid: '10.10.10.2'
+interfaces:
+  swp2:
+    id: 'swp2' 
+    ip: '10.10.0.4/31'
+    desc: 'Leaf2-Spine1'
+  swp3:
+    id: 'swp3'
+    ip: '10.10.0.6/31'
+    desc: 'Leaf2-Spine2'

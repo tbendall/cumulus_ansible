@@ -1,0 +1,11 @@
+---
+
+- name: NVUE API
+  hosts: leaf1
+  gather_facts: true
+  remote_user: cumulus
+
+  tasks:
+    - name: Print
+      debug:
+        msg: "{{ ansible_facts['os_family'] }}"

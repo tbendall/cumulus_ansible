@@ -1,0 +1,29 @@
+all:
+  hosts:
+    leaf1:
+    leaf2:
+    leaf3:
+    leaf4:
+    spine1:
+    spine2:
+leafs:
+  hosts:
+    leaf1:
+    leaf2:
+    leaf3:
+    leaf4:
+spines:
+  hosts:
+    spine1:
+    spine2:
+  vars:
+    ansible_network_os: nvidia.nvue.httpapi
+    ansible_httpapi_port: 8765
+    ansible_httpapi_use_ssl: true
+    ansible_httpapi_validate_certs: false
+    ansible_httpapi_password: 'Test123!'
+    ansible_user: 'cumulus'
+    post_login_message: |
+                #####################################################################################
+                #                     You are successfully logged in to: {{ hostname }}                   #
+                #####################################################################################

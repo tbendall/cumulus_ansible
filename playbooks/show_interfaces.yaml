@@ -1,0 +1,20 @@
+---
+
+- name: NVUE API
+  hosts: leaf1
+  gather_facts: false
+  remote_user: cumulus
+
+  tasks:
+    - name: List all revisions
+      nvidia.nvue.command:
+        commands:
+        - show interface
+      register: interfaces
+
+    - name: show
+      ansible.builtin.debug:
+        msg:
+        - "{{ interfaces }}"
+
+  
