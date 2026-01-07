@@ -40,6 +40,7 @@
         key: "{{ ssh_pubkey }}"
         path: "{{ ssh_authorized_key_path }}"
         manage_dir: false
+        test
 
     - name: Ensure authorized_keys permissions are strict
       ansible.builtin.file:
