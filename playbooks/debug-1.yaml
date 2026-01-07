@@ -1,0 +1,8 @@
+- name: Minimal test
+  hosts: spine1
+  gather_facts: false
+
+  tasks:
+    - name: Test variable
+      debug:
+        msg: "{{ target_user }}"
