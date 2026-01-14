@@ -1,8 +1,27 @@
 - name: Minimal test
-  hosts: spine1
+  hosts: leaf2
   gather_facts: false
 
   tasks:
     - name: Test variable
       debug:
         msg: "{{ target_user }}"
+
+
+    - name: Build list of other leaf VTEPs
+      set_fact:
+        her_remote_vteps: >-
+          {{ groups['leafs']
+            | difference([inventory_hostname])
+            | map('extract', hostvars, 'lo_ip')
+            | select('defined')
+            | list }}
+
+    - name: Use the fact
+      debug:
+        msg: "{{ her_remote_vteps }}"
+    
+    - name: Use the fact
+      loop: "{{ query('subelements', vlans, 'vnis', {'skip_missing': True}) }}"
+      debug:
+        msg: "{{ item.1 }}"

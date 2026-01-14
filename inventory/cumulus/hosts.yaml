@@ -12,7 +12,7 @@ all:
     ansible_httpapi_port: 8765
     ansible_httpapi_use_ssl: true
     ansible_httpapi_validate_certs: false
-    ansible_httpapi_password: 'Test123!'
+    ansible_httpapi_password: 'Lab123'
     ansible_user: 'cumulus'
     ansible_password: 'Lab123'
     target_user: 'cumulus'
@@ -29,6 +29,16 @@ leafs:
     leaf2:
     leaf3:
     leaf4:
+  vars:
+    vlans:
+      - id: '100'
+        vnis:
+          - '100'
+      - id: '200'
+        vnis:
+          - '200'
+
+
 spines:
   hosts:
     spine1:

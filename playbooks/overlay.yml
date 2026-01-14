@@ -1,0 +1,81 @@
+
+---
+- name: Configure BGP unnumbered via NVUE API
+  hosts: leaf1
+  gather_facts: no
+  remote_user: cumulus
+  connection: ansible.netcommon.httpapi
+
+  tasks:
+
+    - name: Build list of other leaf VTEPs
+      set_fact:
+        HER_remote_vteps: >-
+          {{ groups['leafs']
+            | difference([inventory_hostname])
+            | map('extract', hostvars, 'lo_ip')
+            | select('defined')
+            | list }}
+    
+    - name: Create new revision
+      nvidia.nvue.config:
+        state: new
+      register: revision
+
+    - name: Dump revision
+      ansible.builtin.debug:
+        msg: '{{ revision.revid }}'
+  
+    - name: Set vxlan
+      nvidia.nvue.vxlan:
+        state: merged
+        revid: '{{ revision.revid }}'
+        data:
+          enable: 'on'
+          source:
+            address: "{{ bgp_routerid }}"
+          arp_nd_suppress: 'on'
+          flooding:
+            head_end_replication:
+              - id: "1.1.1.1"
+            
+
+    - name: Set evpn
+      nvidia.nvue.evpn:
+        state: merged
+        revid: '{{ revision.revid }}'
+        data:
+          enable: 'on'
+
+
+    - name: Set bridge
+      #loop: "{{ query('subelements', vlans, 'vnis', {'skip_missing': True}) }}"
+      nvidia.nvue.bridge:
+        state: merged
+        revid: '{{ revision.revid }}'
+        data:
+          - id: 'br_default'
+            type: 'vlan-aware'
+            vlan:
+              - id: '10'
+                vni:
+                  - id: '10'
+                    flooding:
+                      head_end_replication:
+                        - id: '10.10.10.2'
+                        - id: '10.10.10.3'
+              - id: '20'
+                vni:
+                  - id: '20'
+                    flooding:
+                      head_end_replication:
+                        - id: '10.10.10.4'
+
+
+
+    - name: Apply new revision
+      nvidia.nvue.config:
+        state: apply
+        revid: '{{ revision.revid }}'
+        force: true
+      register: revision

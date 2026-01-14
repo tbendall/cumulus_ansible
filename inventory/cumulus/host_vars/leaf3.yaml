@@ -1,0 +1,15 @@
+---
+
+hostname: "leaf3"
+lo_ip: "10.10.10.3/32"
+bgp_asn: '65103'
+bgp_routerid: '10.10.10.3'
+interfaces:
+  - id: 'lo' 
+    ip: '10.10.10.3/32'
+    type: loopback
+    desc: 'Router Loopback'
+    desc: 'Leaf3-Spine2'
+neighbors:
+  - name: swp3
+  - name: swp7

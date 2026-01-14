@@ -1,20 +1,23 @@
 ---
 
 - name: NVUE API
-  hosts: leaf1
+  hosts: spine1
   gather_facts: false
-  remote_user: cumulus
+  connection: ansible.netcommon.httpapi
+
 
   tasks:
-    - name: List all revisions
-      nvidia.nvue.command:
-        commands:
-        - show interface
-      register: interfaces
+  - name: List all interfaces
+    nvidia.nvue.interface:
+      interfaceid: "swp1"
+      state: gathered
+    register: interfaces
 
-    - name: show
-      ansible.builtin.debug:
-        msg:
-        - "{{ interfaces }}"
+
+
+  - name: show
+    ansible.builtin.debug:
+      msg:
+      - "{{ interfaces }}"
 
   

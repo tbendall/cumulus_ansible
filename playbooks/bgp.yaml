@@ -1,0 +1,42 @@
+
+---
+- name: Configure BGP unnumbered via NVUE API
+  hosts: leaf1
+  gather_facts: no
+  remote_user: cumulus
+  connection: ansible.netcommon.httpapi
+
+  tasks:
+    - name: Create new revision
+      nvidia.nvue.config:
+        state: new
+      register: revision
+
+    - name: Dump revision
+      ansible.builtin.debug:
+        msg: '{{ revision.revid }}'
+    
+    - name: Set router
+      vars:
+        ifobj: "{{ item }}"
+      nvidia.nvue.router:
+        state: merged
+        revid: '{{ revision.revid }}'
+        data:
+          bgp:
+            enable: 'on'
+            autonomous_system: leaf
+            bgp_routerid: "{{ bgp_routerid }}"
+          vrr:
+            enable: 'on'
+
+    - name: Dump previous output
+      ansible.builtin.debug:
+        msg: '{{ revision }}'
+
+    - name: Apply new revision
+      nvidia.nvue.config:
+        state: apply
+        revid: '{{ revision.revid }}'
+        force: true
+      register: revision

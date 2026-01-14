@@ -1,0 +1,40 @@
+---
+
+- name: NVUE API
+  hosts: leaf4
+  gather_facts: false
+  remote_user: cumulus
+  connection: ansible.netcommon.httpapi
+
+  tasks:
+    - name: Create new revision
+      nvidia.nvue.config:
+        state: new
+      register: revision
+
+    - name: Dump revision
+      ansible.builtin.debug:
+        msg: '{{ revision.revid }}'
+
+    - name: Set interface
+      vars:
+        ifobj: "{{ item }}"
+      loop: "{{ interfaces }}"
+      nvidia.nvue.interface:
+        state: merged
+        revid: '{{ revision.revid }}'
+        data:
+          - id: "{{ ifobj.id }}"
+            description: "Data Interface"
+      register: interface
+
+    - name: Dump previous output
+      ansible.builtin.debug:
+        msg: '{{ interface }}'
+
+    - name: Apply new revision
+      nvidia.nvue.config:
+        state: apply
+        revid: '{{ revision.revid }}'
+        force: true
+      register: revision

@@ -1,7 +1,7 @@
 ---
 
   - name: NVUE API
-    hosts: leafs:spines
+    hosts: leafs
     gather_facts: false
     remote_user: cumulus
 
