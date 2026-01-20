@@ -1,7 +1,7 @@
 ---
 
 - name: NVUE API
-  hosts: leaf4
+  hosts: leafs
   gather_facts: false
   remote_user: cumulus
   connection: ansible.netcommon.httpapi

@@ -6,6 +6,7 @@ all:
     leaf4:
     spine1:
     spine2:
+    mgmt1:
   vars:
     ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
     ansible_network_os: nvidia.nvue.httpapi
@@ -30,6 +31,9 @@ leafs:
     leaf3:
     leaf4:
   vars:
+    vxlan_interfaces:
+      - id: swp16
+        vlan: 100
     vlans:
       - id: '100'
         vnis:

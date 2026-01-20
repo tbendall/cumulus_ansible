@@ -1,7 +1,7 @@
 ---
 
 - name: NVUE API
-  hosts: leaf1
+  hosts: leafs:spines
   gather_facts: false
   remote_user: cumulus
   connection: ansible.netcommon.httpapi
@@ -28,11 +28,11 @@
     - name: Dump previous output
       ansible.builtin.debug:
         msg: '{{ interface }}'
-#
-#    - name: Apply new revision
-#      nvidia.nvue.config:
-#        state: apply
-#        revid: '{{ revision.revid }}'
-#        force: true
-#        wait: 10
-#      register: revision
+
+    - name: Apply new revision
+      nvidia.nvue.config:
+        state: apply
+        revid: '{{ revision.revid }}'
+        force: true
+        wait: 10
+      register: revision
