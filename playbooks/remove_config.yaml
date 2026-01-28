@@ -1,0 +1,42 @@
+---
+
+- name: Remove Config
+  hosts: leafs
+  gather_facts: no
+  remote_user: cumulus
+  connection: ansible.netcommon.httpapi
+
+
+  tasks:
+
+    - name: Build list of other leaf VTEPs
+      set_fact:
+        HER_remote_vteps: >-
+          {{ groups['leafs']
+            | difference([inventory_hostname])
+            | map('extract', hostvars, 'bgp_routerid')
+            | select('defined')
+            | list }}
+
+    - name: Create new revision
+      nvidia.nvue.config:
+        state: new
+      register: revision
+
+    - name: Remove vxlan HER
+      loop: "{{ HER_remote_vteps }}"
+      nvidia.nvue.vxlan:
+        state: deleted
+        revid: "{{ revision.revid }}"
+        data:
+          flooding:
+            head_end_replication:
+            - "{{ items }}"
+              
+
+    - name: Apply new revision
+      nvidia.nvue.config:
+        state: apply
+        revid: '{{ revision.revid }}'
+        force: true
+      register: revision

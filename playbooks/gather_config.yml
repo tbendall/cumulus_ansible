@@ -1,0 +1,32 @@
+---
+
+- name: Gather Config
+  hosts: all
+  gather_facts: no
+  remote_user: cumulus
+  connection: ansible.netcommon.httpapi
+
+
+  pre_tasks:
+      - name: Ensure backup directory exists on control node
+        delegate_to: localhost
+        run_once: true
+        file:
+          path: "{{ backup_dir }}"
+          state: directory
+          mode: "0755"
+
+  tasks:
+    - name: Get the current config
+      nvidia.nvue.api:
+        operation: get
+      register: output
+
+    - name: Save NVUE running-config JSON to control node
+      delegate_to: localhost
+      copy:
+        content: "{{ output | to_nice_json }}"
+        dest: "{{ backup_dir }}/{{ inventory_hostname }}-nvue-running.json"
+        mode: "0644"
+
+

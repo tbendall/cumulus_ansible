@@ -1,0 +1,1620 @@
+{
+    "changed": false,
+    "failed": false,
+    "message": {
+        "acl": {},
+        "bridge": {
+            "domain": {
+                "br_default": {
+                    "ageing": 1800,
+                    "encap": "802.1Q",
+                    "mac-address": "auto",
+                    "multicast": {
+                        "snooping": {
+                            "enable": "off"
+                        }
+                    },
+                    "stp": {
+                        "mode": "rstp",
+                        "priority": 32768,
+                        "state": {
+                            "up": {}
+                        },
+                        "vlan": {}
+                    },
+                    "type": "vlan-aware",
+                    "untagged": 1,
+                    "vlan": {
+                        "100": {
+                            "multicast": {
+                                "snooping": {
+                                    "querier": {
+                                        "source-ip": "0.0.0.0"
+                                    }
+                                }
+                            },
+                            "ptp": {
+                                "enable": "off"
+                            },
+                            "vni": {
+                                "100": {
+                                    "flooding": {
+                                        "enable": "auto"
+                                    },
+                                    "mac-learning": "auto"
+                                }
+                            }
+                        },
+                        "200": {
+                            "multicast": {
+                                "snooping": {
+                                    "querier": {
+                                        "source-ip": "0.0.0.0"
+                                    }
+                                }
+                            },
+                            "ptp": {
+                                "enable": "off"
+                            },
+                            "vni": {
+                                "200": {
+                                    "flooding": {
+                                        "enable": "auto"
+                                    },
+                                    "mac-learning": "auto"
+                                }
+                            }
+                        }
+                    },
+                    "vlan-vni-offset": 0
+                }
+            }
+        },
+        "evpn": {
+            "dad": {
+                "duplicate-action": {
+                    "warning-only": {}
+                },
+                "enable": "on",
+                "mac-move-threshold": 5,
+                "move-window": 180
+            },
+            "enable": "on",
+            "multihoming": {
+                "enable": "off"
+            },
+            "route-advertise": {
+                "default-gateway": "off",
+                "nexthop-setting": "system-ip-mac",
+                "svi-ip": "off"
+            },
+            "vni": {}
+        },
+        "header": {
+            "model": "VX",
+            "nvue-api-version": "nvue_v1",
+            "rev-id": 1.0,
+            "version": "Cumulus Linux 5.6.0"
+        },
+        "interface": {
+            "eth0": {
+                "acl": {},
+                "description": "mgmt interfacedddd",
+                "ip": {
+                    "address": {
+                        "dhcp": {}
+                    },
+                    "gateway": {},
+                    "ipv4": {
+                        "forward": "off"
+                    },
+                    "ipv6": {
+                        "enable": "on",
+                        "forward": "off"
+                    },
+                    "vrf": "mgmt"
+                },
+                "link": {
+                    "auto-negotiate": "on",
+                    "duplex": "full",
+                    "fec": "auto",
+                    "mtu": 9216,
+                    "speed": "auto",
+                    "state": {
+                        "up": {}
+                    }
+                },
+                "type": "eth"
+            },
+            "lo": {
+                "description": "Data Interface",
+                "ip": {
+                    "address": {
+                        "10.10.10.4/32": {}
+                    },
+                    "igmp": {
+                        "enable": "off"
+                    },
+                    "ipv4": {
+                        "forward": "on"
+                    },
+                    "ipv6": {
+                        "enable": "on",
+                        "forward": "on"
+                    },
+                    "vrf": "default"
+                },
+                "router": {
+                    "adaptive-routing": {
+                        "enable": "off"
+                    },
+                    "ospf": {
+                        "enable": "off"
+                    },
+                    "ospf6": {
+                        "enable": "off"
+                    },
+                    "pim": {
+                        "enable": "off"
+                    }
+                },
+                "type": "loopback"
+            },
+            "swp1": {
+                "acl": {},
+                "bridge": {
+                    "domain": {
+                        "br_default": {
+                            "access": 100,
+                            "learning": "on",
+                            "stp": {
+                                "admin-edge": "off",
+                                "auto-edge": "on",
+                                "bpdu-filter": "off",
+                                "bpdu-guard": "off",
+                                "network": "off",
+                                "restrrole": "off",
+                                "vlan": {}
+                            }
+                        }
+                    }
+                },
+                "evpn": {
+                    "multihoming": {
+                        "uplink": "off"
+                    }
+                },
+                "ip": {
+                    "address": {},
+                    "gateway": {},
+                    "igmp": {
+                        "enable": "off"
+                    },
+                    "ipv4": {
+                        "forward": "on"
+                    },
+                    "ipv6": {
+                        "enable": "on",
+                        "forward": "on"
+                    },
+                    "neighbor-discovery": {
+                        "dnssl": {},
+                        "enable": "on",
+                        "home-agent": {
+                            "enable": "off"
+                        },
+                        "prefix": {},
+                        "rdnss": {},
+                        "router-advertisement": {
+                            "enable": "off"
+                        }
+                    },
+                    "vrf": "default",
+                    "vrrp": {
+                        "enable": "off"
+                    }
+                },
+                "link": {
+                    "auto-negotiate": "on",
+                    "breakout": {},
+                    "duplex": "full",
+                    "fec": "auto",
+                    "mtu": 9216,
+                    "speed": "auto",
+                    "state": {
+                        "up": {}
+                    }
+                },
+                "ptp": {
+                    "enable": "off"
+                },
+                "router": {
+                    "adaptive-routing": {
+                        "enable": "off"
+                    },
+                    "ospf": {
+                        "enable": "off"
+                    },
+                    "ospf6": {
+                        "enable": "off"
+                    },
+                    "pbr": {
+                        "map": {}
+                    },
+                    "pim": {
+                        "enable": "off"
+                    }
+                },
+                "synce": {
+                    "enable": "off"
+                },
+                "type": "swp"
+            },
+            "swp16": {
+                "acl": {},
+                "bridge": {
+                    "domain": {
+                        "br_default": {
+                            "access": 100,
+                            "learning": "on",
+                            "stp": {
+                                "admin-edge": "off",
+                                "auto-edge": "on",
+                                "bpdu-filter": "off",
+                                "bpdu-guard": "off",
+                                "network": "off",
+                                "restrrole": "off",
+                                "vlan": {}
+                            }
+                        }
+                    }
+                },
+                "evpn": {
+                    "multihoming": {
+                        "uplink": "off"
+                    }
+                },
+                "ip": {
+                    "address": {},
+                    "gateway": {},
+                    "igmp": {
+                        "enable": "off"
+                    },
+                    "ipv4": {
+                        "forward": "on"
+                    },
+                    "ipv6": {
+                        "enable": "on",
+                        "forward": "on"
+                    },
+                    "neighbor-discovery": {
+                        "dnssl": {},
+                        "enable": "on",
+                        "home-agent": {
+                            "enable": "off"
+                        },
+                        "prefix": {},
+                        "rdnss": {},
+                        "router-advertisement": {
+                            "enable": "off"
+                        }
+                    },
+                    "vrf": "default",
+                    "vrrp": {
+                        "enable": "off"
+                    }
+                },
+                "link": {
+                    "auto-negotiate": "on",
+                    "breakout": {},
+                    "duplex": "full",
+                    "fec": "auto",
+                    "mtu": 9216,
+                    "speed": "auto",
+                    "state": {
+                        "up": {}
+                    }
+                },
+                "ptp": {
+                    "enable": "off"
+                },
+                "router": {
+                    "adaptive-routing": {
+                        "enable": "off"
+                    },
+                    "ospf": {
+                        "enable": "off"
+                    },
+                    "ospf6": {
+                        "enable": "off"
+                    },
+                    "pbr": {
+                        "map": {}
+                    },
+                    "pim": {
+                        "enable": "off"
+                    }
+                },
+                "synce": {
+                    "enable": "off"
+                },
+                "type": "swp"
+            },
+            "swp4": {
+                "acl": {},
+                "evpn": {
+                    "multihoming": {
+                        "uplink": "off"
+                    }
+                },
+                "ip": {
+                    "address": {},
+                    "gateway": {},
+                    "igmp": {
+                        "enable": "off"
+                    },
+                    "ipv4": {
+                        "forward": "on"
+                    },
+                    "ipv6": {
+                        "enable": "on",
+                        "forward": "on"
+                    },
+                    "neighbor-discovery": {
+                        "dnssl": {},
+                        "enable": "on",
+                        "home-agent": {
+                            "enable": "off"
+                        },
+                        "prefix": {},
+                        "rdnss": {},
+                        "router-advertisement": {
+                            "enable": "off"
+                        }
+                    },
+                    "vrf": "default",
+                    "vrrp": {
+                        "enable": "off"
+                    }
+                },
+                "link": {
+                    "auto-negotiate": "on",
+                    "breakout": {},
+                    "duplex": "full",
+                    "fec": "auto",
+                    "mtu": 9216,
+                    "speed": "auto",
+                    "state": {
+                        "up": {}
+                    }
+                },
+                "ptp": {
+                    "enable": "off"
+                },
+                "router": {
+                    "adaptive-routing": {
+                        "enable": "off"
+                    },
+                    "ospf": {
+                        "enable": "off"
+                    },
+                    "ospf6": {
+                        "enable": "off"
+                    },
+                    "pbr": {
+                        "map": {}
+                    },
+                    "pim": {
+                        "enable": "off"
+                    }
+                },
+                "synce": {
+                    "enable": "off"
+                },
+                "type": "swp"
+            },
+            "swp8": {
+                "acl": {},
+                "evpn": {
+                    "multihoming": {
+                        "uplink": "off"
+                    }
+                },
+                "ip": {
+                    "address": {},
+                    "gateway": {},
+                    "igmp": {
+                        "enable": "off"
+                    },
+                    "ipv4": {
+                        "forward": "on"
+                    },
+                    "ipv6": {
+                        "enable": "on",
+                        "forward": "on"
+                    },
+                    "neighbor-discovery": {
+                        "dnssl": {},
+                        "enable": "on",
+                        "home-agent": {
+                            "enable": "off"
+                        },
+                        "prefix": {},
+                        "rdnss": {},
+                        "router-advertisement": {
+                            "enable": "off"
+                        }
+                    },
+                    "vrf": "default",
+                    "vrrp": {
+                        "enable": "off"
+                    }
+                },
+                "link": {
+                    "auto-negotiate": "on",
+                    "breakout": {},
+                    "duplex": "full",
+                    "fec": "auto",
+                    "mtu": 9216,
+                    "speed": "auto",
+                    "state": {
+                        "up": {}
+                    }
+                },
+                "ptp": {
+                    "enable": "off"
+                },
+                "router": {
+                    "adaptive-routing": {
+                        "enable": "off"
+                    },
+                    "ospf": {
+                        "enable": "off"
+                    },
+                    "ospf6": {
+                        "enable": "off"
+                    },
+                    "pbr": {
+                        "map": {}
+                    },
+                    "pim": {
+                        "enable": "off"
+                    }
+                },
+                "synce": {
+                    "enable": "off"
+                },
+                "type": "swp"
+            }
+        },
+        "mlag": {
+            "enable": "off"
+        },
+        "nve": {
+            "vxlan": {
+                "arp-nd-suppress": "on",
+                "decapsulation": {
+                    "dscp": {
+                        "action": "derive"
+                    }
+                },
+                "enable": "on",
+                "encapsulation": {
+                    "dscp": {
+                        "action": "derive"
+                    }
+                },
+                "flooding": {
+                    "enable": "on",
+                    "head-end-replication": {
+                        "10.10.10.1": {},
+                        "10.10.10.2": {},
+                        "10.10.10.3": {}
+                    }
+                },
+                "mac-learning": "off",
+                "mlag": {
+                    "shared-address": "none"
+                },
+                "mtu": 9216,
+                "port": 4789,
+                "source": {
+                    "address": "10.10.10.4"
+                }
+            }
+        },
+        "qos": {
+            "advance-buffer-config": {
+                "default-global": {
+                    "egress-lossy-buffer": {
+                        "multicast-switch-priority": {
+                            "0": {
+                                "service-pool": "0"
+                            },
+                            "1": {
+                                "service-pool": "0"
+                            },
+                            "2": {
+                                "service-pool": "0"
+                            },
+                            "3": {
+                                "service-pool": "0"
+                            },
+                            "4": {
+                                "service-pool": "0"
+                            },
+                            "5": {
+                                "service-pool": "0"
+                            },
+                            "6": {
+                                "service-pool": "0"
+                            },
+                            "7": {
+                                "service-pool": "0"
+                            }
+                        },
+                        "traffic-class": {
+                            "0": {
+                                "service-pool": "0"
+                            },
+                            "1": {
+                                "service-pool": "0"
+                            },
+                            "2": {
+                                "service-pool": "0"
+                            },
+                            "3": {
+                                "service-pool": "0"
+                            },
+                            "4": {
+                                "service-pool": "0"
+                            },
+                            "5": {
+                                "service-pool": "0"
+                            },
+                            "6": {
+                                "service-pool": "0"
+                            },
+                            "7": {
+                                "service-pool": "0"
+                            }
+                        }
+                    },
+                    "egress-pool": {
+                        "0": {
+                            "memory-percent": 100,
+                            "mode": "dynamic"
+                        }
+                    },
+                    "ingress-lossy-buffer": {
+                        "priority-group": {
+                            "bulk": {
+                                "service-pool": "0",
+                                "switch-priority": {
+                                    "0": {},
+                                    "1": {},
+                                    "2": {},
+                                    "3": {},
+                                    "4": {},
+                                    "5": {},
+                                    "6": {},
+                                    "7": {}
+                                }
+                            }
+                        }
+                    },
+                    "ingress-pool": {
+                        "0": {
+                            "memory-percent": 100,
+                            "mode": "dynamic"
+                        }
+                    }
+                }
+            },
+            "congestion-control": {
+                "default-global": {
+                    "traffic-class": {
+                        "0": {
+                            "ecn": "enable",
+                            "max-threshold": 1500000,
+                            "min-threshold": 150000,
+                            "probability": 100,
+                            "red": "disable"
+                        }
+                    }
+                }
+            },
+            "egress-queue-mapping": {
+                "default-global": {
+                    "switch-priority": {
+                        "0": {
+                            "traffic-class": 0
+                        },
+                        "1": {
+                            "traffic-class": 1
+                        },
+                        "2": {
+                            "traffic-class": 2
+                        },
+                        "3": {
+                            "traffic-class": 3
+                        },
+                        "4": {
+                            "traffic-class": 4
+                        },
+                        "5": {
+                            "traffic-class": 5
+                        },
+                        "6": {
+                            "traffic-class": 6
+                        },
+                        "7": {
+                            "traffic-class": 7
+                        }
+                    }
+                }
+            },
+            "egress-scheduler": {
+                "default-global": {
+                    "traffic-class": {
+                        "0": {
+                            "bw-percent": 12,
+                            "mode": "dwrr"
+                        },
+                        "1": {
+                            "bw-percent": 13,
+                            "mode": "dwrr"
+                        },
+                        "2": {
+                            "bw-percent": 12,
+                            "mode": "dwrr"
+                        },
+                        "3": {
+                            "bw-percent": 13,
+                            "mode": "dwrr"
+                        },
+                        "4": {
+                            "bw-percent": 12,
+                            "mode": "dwrr"
+                        },
+                        "5": {
+                            "bw-percent": 13,
+                            "mode": "dwrr"
+                        },
+                        "6": {
+                            "bw-percent": 12,
+                            "mode": "dwrr"
+                        },
+                        "7": {
+                            "bw-percent": 13,
+                            "mode": "dwrr"
+                        }
+                    }
+                }
+            },
+            "egress-shaper": {},
+            "link-pause": {},
+            "mapping": {
+                "default-global": {
+                    "pcp": {
+                        "0": {
+                            "switch-priority": 0
+                        },
+                        "1": {
+                            "switch-priority": 1
+                        },
+                        "2": {
+                            "switch-priority": 2
+                        },
+                        "3": {
+                            "switch-priority": 3
+                        },
+                        "4": {
+                            "switch-priority": 4
+                        },
+                        "5": {
+                            "switch-priority": 5
+                        },
+                        "6": {
+                            "switch-priority": 6
+                        },
+                        "7": {
+                            "switch-priority": 7
+                        }
+                    },
+                    "port-default-sp": 0,
+                    "trust": "l2"
+                }
+            },
+            "pfc": {},
+            "pfc-watchdog": {
+                "polling-interval": 100,
+                "robustness": 3
+            },
+            "remark": {
+                "default-global": {}
+            },
+            "roce": {
+                "enable": "off"
+            },
+            "traffic-pool": {
+                "default-lossy": {
+                    "memory-percent": 100,
+                    "switch-priority": {
+                        "0": {},
+                        "1": {},
+                        "2": {},
+                        "3": {},
+                        "4": {},
+                        "5": {},
+                        "6": {},
+                        "7": {}
+                    }
+                }
+            }
+        },
+        "router": {
+            "adaptive-routing": {
+                "enable": "off"
+            },
+            "bgp": {
+                "autonomous-system": 65104,
+                "convergence-wait": {
+                    "establish-wait-time": 0,
+                    "time": 0
+                },
+                "enable": "on",
+                "graceful-restart": {
+                    "mode": "helper-only",
+                    "path-selection-deferral-time": 360,
+                    "restart-time": 120,
+                    "stale-routes-time": 360
+                },
+                "graceful-shutdown": "off",
+                "policy-update-timer": 5,
+                "router-id": "10.10.10.4",
+                "wait-for-install": "off"
+            },
+            "igmp": {
+                "enable": "off"
+            },
+            "nexthop": {
+                "group": {}
+            },
+            "ospf": {
+                "enable": "off"
+            },
+            "ospf6": {
+                "enable": "off"
+            },
+            "password-obfuscation": "disabled",
+            "pbr": {
+                "enable": "off"
+            },
+            "pim": {
+                "enable": "off"
+            },
+            "policy": {
+                "as-path-list": {},
+                "community-list": {},
+                "ext-community-list": {},
+                "large-community-list": {},
+                "prefix-list": {},
+                "route-map": {}
+            },
+            "ptm": {
+                "enable": "off"
+            },
+            "vrr": {
+                "enable": "off"
+            },
+            "vrrp": {
+                "enable": "off"
+            }
+        },
+        "service": {
+            "dhcp-relay": {},
+            "dhcp-relay6": {},
+            "dhcp-server": {},
+            "dhcp-server6": {},
+            "dns": {},
+            "lldp": {
+                "dot1-tlv": "off",
+                "lldp-med-inventory-tlv": "off",
+                "mode": "default",
+                "tx-hold-multiplier": 4,
+                "tx-interval": 30
+            },
+            "ntp": {},
+            "ptp": {
+                "1": {
+                    "acceptable-master": {},
+                    "domain": 0,
+                    "enable": "off",
+                    "ip-dscp": 46,
+                    "logging-level": "info",
+                    "monitor": {
+                        "max-offset-threshold": 50,
+                        "max-timestamp-entries": 100,
+                        "max-violation-log-entries": 4,
+                        "max-violation-log-sets": 2,
+                        "min-offset-threshold": -50,
+                        "path-delay-threshold": 200,
+                        "violation-log-interval": 1
+                    },
+                    "priority1": 128,
+                    "priority2": 128,
+                    "profile": {
+                        "default-1588": {
+                            "announce-interval": 1,
+                            "announce-timeout": 3,
+                            "delay-mechanism": "end-to-end",
+                            "delay-req-interval": 0,
+                            "domain": 0,
+                            "priority1": 128,
+                            "priority2": 128,
+                            "profile-type": "ieee-1588",
+                            "sync-interval": 0,
+                            "transport": "ipv4",
+                            "two-step": "on"
+                        },
+                        "default-itu-8275-1": {
+                            "announce-interval": -3,
+                            "announce-timeout": 3,
+                            "delay-mechanism": "end-to-end",
+                            "delay-req-interval": -4,
+                            "domain": 24,
+                            "local-priority": 128,
+                            "priority1": 128,
+                            "priority2": 128,
+                            "profile-type": "itu-g-8275-1",
+                            "sync-interval": -4,
+                            "transport": "802.3",
+                            "two-step": "on"
+                        },
+                        "default-itu-8275-2": {
+                            "announce-interval": 0,
+                            "announce-timeout": 3,
+                            "delay-mechanism": "end-to-end",
+                            "delay-req-interval": -6,
+                            "domain": 44,
+                            "local-priority": 128,
+                            "priority1": 128,
+                            "priority2": 128,
+                            "profile-type": "itu-g-8275-2",
+                            "sync-interval": -6,
+                            "transport": "ipv4",
+                            "two-step": "on"
+                        }
+                    },
+                    "two-step": "on",
+                    "unicast-master": {}
+                }
+            },
+            "snmp-server": {
+                "enable": "off"
+            },
+            "synce": {
+                "enable": "off"
+            },
+            "syslog": {}
+        },
+        "system": {
+            "aaa": {
+                "authentication-order": {},
+                "tacacs": {
+                    "enable": "off"
+                },
+                "user": {}
+            },
+            "acl": {
+                "mode": "atomic"
+            },
+            "api": {
+                "listening-address": {},
+                "port": 8765,
+                "state": "enabled"
+            },
+            "config": {
+                "apply": {
+                    "ignore": {},
+                    "overwrite": "all"
+                },
+                "auto-save": {
+                    "enable": "off"
+                },
+                "snippet": {}
+            },
+            "control-plane": {
+                "acl": {},
+                "policer": {
+                    "acl-log": {
+                        "burst": 100,
+                        "rate": 100,
+                        "state": "on"
+                    },
+                    "arp": {
+                        "burst": 800,
+                        "rate": 800,
+                        "state": "on"
+                    },
+                    "bfd": {
+                        "burst": 2000,
+                        "rate": 2000,
+                        "state": "on"
+                    },
+                    "bgp": {
+                        "burst": 2000,
+                        "rate": 2000,
+                        "state": "on"
+                    },
+                    "catch-all": {
+                        "burst": 100,
+                        "rate": 100,
+                        "state": "on"
+                    },
+                    "clag": {
+                        "burst": 2000,
+                        "rate": 2000,
+                        "state": "on"
+                    },
+                    "dhcp": {
+                        "burst": 2000,
+                        "rate": 2000,
+                        "state": "on"
+                    },
+                    "eapol": {
+                        "burst": 2000,
+                        "rate": 2000,
+                        "state": "on"
+                    },
+                    "icmp-def": {
+                        "burst": 40,
+                        "rate": 100,
+                        "state": "on"
+                    },
+                    "icmp6-def-mld": {
+                        "burst": 100,
+                        "rate": 300,
+                        "state": "on"
+                    },
+                    "icmp6-neigh": {
+                        "burst": 500,
+                        "rate": 500,
+                        "state": "on"
+                    },
+                    "igmp": {
+                        "burst": 1000,
+                        "rate": 1000,
+                        "state": "on"
+                    },
+                    "ip2me": {
+                        "burst": 1000,
+                        "rate": 1000,
+                        "state": "on"
+                    },
+                    "l3-local": {
+                        "burst": 100,
+                        "rate": 400,
+                        "state": "on"
+                    },
+                    "lacp": {
+                        "burst": 2000,
+                        "rate": 2000,
+                        "state": "on"
+                    },
+                    "lldp-ptp": {
+                        "burst": 2500,
+                        "rate": 2500,
+                        "state": "on"
+                    },
+                    "nat": {
+                        "burst": 200,
+                        "rate": 200,
+                        "state": "on"
+                    },
+                    "pim-ospf-rip": {
+                        "burst": 2000,
+                        "rate": 2000,
+                        "state": "on"
+                    },
+                    "rpvst": {
+                        "burst": 2000,
+                        "rate": 2000,
+                        "state": "on"
+                    },
+                    "span-cpu": {
+                        "burst": 100,
+                        "rate": 100,
+                        "state": "on"
+                    },
+                    "ssh": {
+                        "burst": 1000,
+                        "rate": 1000,
+                        "state": "on"
+                    },
+                    "stp": {
+                        "burst": 2000,
+                        "rate": 2000,
+                        "state": "on"
+                    },
+                    "unknown-ipmc": {
+                        "burst": 1000,
+                        "rate": 1000,
+                        "state": "on"
+                    }
+                },
+                "trap": {}
+            },
+            "counter": {
+                "polling-interval": {
+                    "logical-interface": 5,
+                    "physical-interface": 2
+                }
+            },
+            "forwarding": {
+                "ecmp-hash": {
+                    "destination-ip": "on",
+                    "destination-port": "on",
+                    "gtp-teid": "off",
+                    "ingress-interface": "off",
+                    "inner-destination-ip": "off",
+                    "inner-destination-port": "off",
+                    "inner-ip-protocol": "off",
+                    "inner-ipv6-label": "off",
+                    "inner-source-ip": "off",
+                    "inner-source-port": "off",
+                    "ip-protocol": "on",
+                    "ipv6-label": "on",
+                    "source-ip": "on",
+                    "source-port": "on"
+                },
+                "host-route-preference": "route",
+                "lag-hash": {
+                    "destination-ip": "on",
+                    "destination-mac": "on",
+                    "destination-port": "on",
+                    "ether-type": "on",
+                    "gtp-teid": "off",
+                    "ip-protocol": "on",
+                    "source-ip": "on",
+                    "source-mac": "on",
+                    "source-port": "on",
+                    "vlan": "on"
+                },
+                "programming": {
+                    "log-level": "info"
+                }
+            },
+            "global": {
+                "anycast-id": "none",
+                "anycast-mac": "none",
+                "arp": {
+                    "base-reachable-time": "auto"
+                },
+                "fabric-id": 1,
+                "fabric-mac": "none",
+                "l3svd": {
+                    "enable": "off"
+                },
+                "nd": {
+                    "base-reachable-time": "auto"
+                },
+                "reserved": {
+                    "routing-table": {
+                        "pbr": {
+                            "begin": 10000,
+                            "end": 4294966272
+                        }
+                    },
+                    "vlan": {
+                        "internal": {
+                            "range": "3725-3999"
+                        },
+                        "l3-vni-vlan": {
+                            "begin": 4000,
+                            "end": 4064
+                        }
+                    }
+                },
+                "system-mac": "auto"
+            },
+            "hostname": "Leaf4",
+            "port-mirror": {
+                "session": {}
+            },
+            "reboot": {
+                "mode": "cold"
+            },
+            "ssh-server": {
+                "allow-users": {},
+                "authentication-retries": 6,
+                "deny-users": {},
+                "inactive-timeout": 0,
+                "login-timeout": 120,
+                "max-sessions-per-connection": 10,
+                "max-unauthenticated": {
+                    "session-count": 100,
+                    "throttle-percent": 30,
+                    "throttle-start": 10
+                },
+                "permit-root-login": "prohibit-password",
+                "port": {},
+                "state": "enabled",
+                "vrf": {}
+            },
+            "wjh": {
+                "enable": "off"
+            }
+        },
+        "vrf": {
+            "default": {
+                "evpn": {
+                    "enable": "off"
+                },
+                "loopback": {
+                    "ip": {
+                        "address": {
+                            "127.0.0.1/8": {},
+                            "::1/128": {}
+                        }
+                    }
+                },
+                "ptp": {
+                    "enable": "on"
+                },
+                "router": {
+                    "bgp": {
+                        "address-family": {
+                            "ipv4-unicast": {
+                                "admin-distance": {
+                                    "external": 20,
+                                    "internal": 200
+                                },
+                                "aggregate-route": {},
+                                "enable": "on",
+                                "multipaths": {
+                                    "compare-cluster-length": "off",
+                                    "ebgp": 64,
+                                    "ibgp": 64
+                                },
+                                "network": {},
+                                "redistribute": {
+                                    "connected": {
+                                        "enable": "on",
+                                        "metric": "auto",
+                                        "route-map": "none"
+                                    },
+                                    "kernel": {
+                                        "enable": "off"
+                                    },
+                                    "ospf": {
+                                        "enable": "off"
+                                    },
+                                    "static": {
+                                        "enable": "off"
+                                    }
+                                },
+                                "rib-filter": "none",
+                                "route-export": {
+                                    "to-evpn": {
+                                        "enable": "off"
+                                    }
+                                },
+                                "route-import": {
+                                    "from-vrf": {
+                                        "enable": "off"
+                                    }
+                                }
+                            },
+                            "ipv6-unicast": {
+                                "enable": "off"
+                            },
+                            "l2vpn-evpn": {
+                                "enable": "on"
+                            }
+                        },
+                        "autonomous-system": 65104,
+                        "confederation": {
+                            "id": "none",
+                            "member-as": {}
+                        },
+                        "dynamic-neighbor": {
+                            "limit": 100,
+                            "listen-range": {}
+                        },
+                        "enable": "on",
+                        "neighbor": {
+                            "swp4": {
+                                "address-family": {
+                                    "ipv4-unicast": {
+                                        "add-path-tx": "off",
+                                        "aspath": {
+                                            "allow-my-asn": {
+                                                "enable": "off"
+                                            },
+                                            "private-as": "none",
+                                            "replace-peer-as": "off"
+                                        },
+                                        "attribute-mod": {
+                                            "aspath": "on",
+                                            "med": "on",
+                                            "nexthop": "on"
+                                        },
+                                        "community-advertise": {
+                                            "extended": "on",
+                                            "large": "off",
+                                            "regular": "on"
+                                        },
+                                        "conditional-advertise": {
+                                            "enable": "off"
+                                        },
+                                        "default-route-origination": {
+                                            "enable": "off"
+                                        },
+                                        "enable": "on",
+                                        "nexthop-setting": "auto",
+                                        "policy": {
+                                            "inbound": {
+                                                "aspath-list": "none",
+                                                "prefix-list": "none",
+                                                "route-map": "none"
+                                            },
+                                            "outbound": {
+                                                "aspath-list": "none",
+                                                "prefix-list": "none",
+                                                "route-map": "none",
+                                                "unsuppress-map": "none"
+                                            }
+                                        },
+                                        "prefix-limits": {
+                                            "inbound": {
+                                                "maximum": "none",
+                                                "warning-threshold": 75
+                                            }
+                                        },
+                                        "route-reflector-client": "off",
+                                        "route-server-client": "off",
+                                        "soft-reconfiguration": "off",
+                                        "weight": 0
+                                    },
+                                    "ipv6-unicast": {
+                                        "enable": "off"
+                                    },
+                                    "l2vpn-evpn": {
+                                        "enable": "on"
+                                    }
+                                },
+                                "bfd": {
+                                    "enable": "off"
+                                },
+                                "capabilities": {
+                                    "extended-nexthop": "auto"
+                                },
+                                "description": "none",
+                                "enable": "on",
+                                "enforce-first-as": "off",
+                                "graceful-restart": {
+                                    "mode": "auto"
+                                },
+                                "local-as": {
+                                    "enable": "off"
+                                },
+                                "multihop-ttl": "auto",
+                                "nexthop-connected-check": "on",
+                                "passive-mode": "off",
+                                "password": "*",
+                                "peer-group": "underlay",
+                                "remote-as": "auto",
+                                "timers": {
+                                    "connection-retry": "auto",
+                                    "hold": "auto",
+                                    "keepalive": "auto",
+                                    "route-advertisement": "auto"
+                                },
+                                "ttl-security": {
+                                    "enable": "off"
+                                },
+                                "type": "unnumbered"
+                            },
+                            "swp8": {
+                                "address-family": {
+                                    "ipv4-unicast": {
+                                        "add-path-tx": "off",
+                                        "aspath": {
+                                            "allow-my-asn": {
+                                                "enable": "off"
+                                            },
+                                            "private-as": "none",
+                                            "replace-peer-as": "off"
+                                        },
+                                        "attribute-mod": {
+                                            "aspath": "on",
+                                            "med": "on",
+                                            "nexthop": "on"
+                                        },
+                                        "community-advertise": {
+                                            "extended": "on",
+                                            "large": "off",
+                                            "regular": "on"
+                                        },
+                                        "conditional-advertise": {
+                                            "enable": "off"
+                                        },
+                                        "default-route-origination": {
+                                            "enable": "off"
+                                        },
+                                        "enable": "on",
+                                        "nexthop-setting": "auto",
+                                        "policy": {
+                                            "inbound": {
+                                                "aspath-list": "none",
+                                                "prefix-list": "none",
+                                                "route-map": "none"
+                                            },
+                                            "outbound": {
+                                                "aspath-list": "none",
+                                                "prefix-list": "none",
+                                                "route-map": "none",
+                                                "unsuppress-map": "none"
+                                            }
+                                        },
+                                        "prefix-limits": {
+                                            "inbound": {
+                                                "maximum": "none",
+                                                "warning-threshold": 75
+                                            }
+                                        },
+                                        "route-reflector-client": "off",
+                                        "route-server-client": "off",
+                                        "soft-reconfiguration": "off",
+                                        "weight": 0
+                                    },
+                                    "ipv6-unicast": {
+                                        "enable": "off"
+                                    },
+                                    "l2vpn-evpn": {
+                                        "enable": "on"
+                                    }
+                                },
+                                "bfd": {
+                                    "enable": "off"
+                                },
+                                "capabilities": {
+                                    "extended-nexthop": "auto"
+                                },
+                                "description": "none",
+                                "enable": "on",
+                                "enforce-first-as": "off",
+                                "graceful-restart": {
+                                    "mode": "auto"
+                                },
+                                "local-as": {
+                                    "enable": "off"
+                                },
+                                "multihop-ttl": "auto",
+                                "nexthop-connected-check": "on",
+                                "passive-mode": "off",
+                                "password": "*",
+                                "peer-group": "underlay",
+                                "remote-as": "auto",
+                                "timers": {
+                                    "connection-retry": "auto",
+                                    "hold": "auto",
+                                    "keepalive": "auto",
+                                    "route-advertisement": "auto"
+                                },
+                                "ttl-security": {
+                                    "enable": "off"
+                                },
+                                "type": "unnumbered"
+                            }
+                        },
+                        "path-selection": {
+                            "aspath": {
+                                "compare-confed": "off",
+                                "compare-lengths": "on"
+                            },
+                            "med": {
+                                "compare-always": "off",
+                                "compare-confed": "off",
+                                "compare-deterministic": "on",
+                                "missing-as-max": "off"
+                            },
+                            "multipath": {
+                                "aspath-ignore": "off",
+                                "bandwidth": "all-paths",
+                                "generate-asset": "off"
+                            },
+                            "routerid-compare": "off"
+                        },
+                        "peer-group": {
+                            "underlay": {
+                                "address-family": {
+                                    "ipv4-unicast": {
+                                        "add-path-tx": "off",
+                                        "aspath": {
+                                            "allow-my-asn": {
+                                                "enable": "off"
+                                            },
+                                            "private-as": "none",
+                                            "replace-peer-as": "off"
+                                        },
+                                        "attribute-mod": {
+                                            "aspath": "on",
+                                            "med": "on",
+                                            "nexthop": "on"
+                                        },
+                                        "community-advertise": {
+                                            "extended": "on",
+                                            "large": "off",
+                                            "regular": "on"
+                                        },
+                                        "conditional-advertise": {
+                                            "enable": "off"
+                                        },
+                                        "default-route-origination": {
+                                            "enable": "off"
+                                        },
+                                        "enable": "on",
+                                        "nexthop-setting": "auto",
+                                        "policy": {
+                                            "inbound": {
+                                                "aspath-list": "none",
+                                                "prefix-list": "none",
+                                                "route-map": "none"
+                                            },
+                                            "outbound": {
+                                                "aspath-list": "none",
+                                                "prefix-list": "none",
+                                                "route-map": "none",
+                                                "unsuppress-map": "none"
+                                            }
+                                        },
+                                        "prefix-limits": {
+                                            "inbound": {
+                                                "maximum": "none",
+                                                "warning-threshold": 75
+                                            }
+                                        },
+                                        "route-reflector-client": "off",
+                                        "route-server-client": "off",
+                                        "soft-reconfiguration": "off",
+                                        "weight": 0
+                                    },
+                                    "ipv6-unicast": {
+                                        "enable": "off"
+                                    },
+                                    "l2vpn-evpn": {
+                                        "add-path-tx": "off",
+                                        "aspath": {
+                                            "allow-my-asn": {
+                                                "enable": "off"
+                                            },
+                                            "private-as": "none",
+                                            "replace-peer-as": "off"
+                                        },
+                                        "attribute-mod": {
+                                            "aspath": "on",
+                                            "med": "on",
+                                            "nexthop": "on"
+                                        },
+                                        "enable": "on",
+                                        "nexthop-setting": "auto",
+                                        "policy": {
+                                            "inbound": {
+                                                "route-map": "none"
+                                            },
+                                            "outbound": {
+                                                "route-map": "none",
+                                                "unsuppress-map": "none"
+                                            }
+                                        },
+                                        "route-reflector-client": "off",
+                                        "route-server-client": "off",
+                                        "soft-reconfiguration": "off"
+                                    }
+                                },
+                                "bfd": {
+                                    "enable": "off"
+                                },
+                                "capabilities": {
+                                    "extended-nexthop": "auto"
+                                },
+                                "description": "none",
+                                "enforce-first-as": "off",
+                                "local-as": {
+                                    "enable": "off"
+                                },
+                                "multihop-ttl": "auto",
+                                "nexthop-connected-check": "on",
+                                "passive-mode": "off",
+                                "password": "*",
+                                "remote-as": "external",
+                                "timers": {
+                                    "connection-retry": "auto",
+                                    "hold": "auto",
+                                    "keepalive": "auto",
+                                    "route-advertisement": "auto"
+                                },
+                                "ttl-security": {
+                                    "enable": "off"
+                                }
+                            }
+                        },
+                        "rd": "none",
+                        "route-export": {
+                            "to-evpn": {
+                                "route-target": {
+                                    "auto": {}
+                                }
+                            }
+                        },
+                        "route-import": {
+                            "from-evpn": {
+                                "route-target": {
+                                    "auto": {}
+                                }
+                            }
+                        },
+                        "route-reflection": {
+                            "enable": "off"
+                        },
+                        "router-id": "10.10.10.4",
+                        "timers": {
+                            "conditional-advertise": 60,
+                            "connection-retry": 10,
+                            "hold": 9,
+                            "keepalive": 3,
+                            "route-advertisement": "none"
+                        }
+                    },
+                    "nexthop-tracking": {},
+                    "ospf": {
+                        "enable": "off"
+                    },
+                    "ospf6": {
+                        "enable": "off"
+                    },
+                    "pim": {
+                        "enable": "off"
+                    },
+                    "rib": {},
+                    "static": {}
+                },
+                "table": "auto"
+            },
+            "mgmt": {
+                "evpn": {
+                    "enable": "off"
+                },
+                "loopback": {
+                    "ip": {
+                        "address": {
+                            "127.0.0.1/8": {},
+                            "::1/128": {}
+                        }
+                    }
+                },
+                "ptp": {
+                    "enable": "on"
+                },
+                "router": {
+                    "bgp": {
+                        "enable": "off"
+                    },
+                    "nexthop-tracking": {},
+                    "ospf": {
+                        "enable": "off"
+                    },
+                    "ospf6": {
+                        "enable": "off"
+                    },
+                    "rib": {},
+                    "static": {}
+                },
+                "table": "auto"
+            }
+        }
+    }
+}

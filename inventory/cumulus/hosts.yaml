@@ -8,6 +8,7 @@ all:
     spine2:
     mgmt1:
   vars:
+    backup_dir: "/etc/ansible/configs"
     ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
     ansible_network_os: nvidia.nvue.httpapi
     ansible_httpapi_port: 8765

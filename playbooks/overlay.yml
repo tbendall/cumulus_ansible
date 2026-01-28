@@ -1,46 +1,40 @@
 
 ---
 - name: Configure BGP unnumbered via NVUE API
-  hosts: leafs
+  hosts: leaf1
   gather_facts: no
   remote_user: cumulus
   connection: ansible.netcommon.httpapi
 
   tasks:
 
-    - name: Build list of other leaf VTEPs
-      set_fact:
-        HER_remote_vteps: >-
-          {{ groups['leafs']
-            | difference([inventory_hostname])
-            | map('extract', hostvars, 'bgp_routerid')
-            | select('defined')
-            | list }}
+#    - name: Build list of other leaf VTEPs
+#      set_fact:
+#        HER_remote_vteps: >-
+#          {{ groups['leafs']
+#            | difference([inventory_hostname])
+#            | map('extract', hostvars, 'bgp_routerid')
+#            | select('defined')
+#            | list }}
     
     - name: Create new revision
       nvidia.nvue.config:
         state: new
       register: revision
+  
+    - name: Set vxlan
+#      loop: "{{ HER_remote_vteps }}"
+      nvidia.nvue.vxlan:
+        state: merged
+        revid: "{{ revision.revid }}"
+        data:
+          flooding:
+            head_end_replication: []
 
     - name: Dump revision
       ansible.builtin.debug:
         msg: '{{ revision.revid }}'
-  
-#    - name: Set vxlan
-#      loop: "{{ HER_remote_vteps }}"
-#      nvidia.nvue.vxlan:
-#        state: merged
-#        revid: "{{ revision.revid }}"
-#        data:
-#          enable: 'on'
-#          source:
-#            address: "{{ bgp_routerid }}"
-#          arp_nd_suppress: 'on'
-#          flooding:
-#            head_end_replication:
-#              - id: "{{ item }}"
-#            
-#
+
 #    - name: Set evpn
 #      nvidia.nvue.evpn:
 #        state: merged
@@ -61,18 +55,18 @@
 #              - id: "{{ item.0.id }}"
 #                vni:
 #                  - id: "{{ item.1 }}"
-
-    - name: Set interfaces in Bridge
-      loop: "{{ vxlan_interfaces }}"
-      nvidia.nvue.interface:
-        state: merged
-        revid: '{{ revision.revid }}'
-        data:
-          - id: "{{ item.id }}"
-            bridge:
-              domain:
-                - id: "br_default"
-                  access: "{{ item.vlan }}"
+#
+#    - name: Set interfaces in Bridge
+#      loop: "{{ vxlan_interfaces }}"
+#      nvidia.nvue.interface:
+#        state: merged
+#        revid: '{{ revision.revid }}'
+#        data:
+#          - id: "{{ item.id }}"
+#            bridge:
+#              domain:
+#                - id: "br_default"
+#                  access: "{{ item.vlan }}"
 
 
 

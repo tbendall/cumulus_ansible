@@ -1,0 +1,64 @@
+---
+
+- name: Remove ONE global HER endpoint using nvidia.nvue.vxlan (CL 5.6)
+  hosts: leaf1
+  gather_facts: no
+  remote_user: cumulus
+  connection: ansible.netcommon.network_cli
+  network_os: community.network.nos
+  vars:
+    target_her_vtep: 10.10.10.4
+
+  tasks:
+
+    ##########################################################################
+    # 2) Enforce the NEW global HER list (i.e., remove one endpoint)
+    ##########################################################################
+
+    - name: Create new revision
+      nvidia.nvue.config:
+        state: new
+
+#
+#    ##########################################################################
+#    # 3) Show NVUE diff & confirm
+#    ##########################################################################
+    - name: Show current config
+      nvidia.nvue.command:
+        commands:
+          - nv unset nve vxlan flooding 
+        apply: false
+      register: output
+
+
+    - name: Print NVUE diff for operator review
+      ansible.builtin.debug:
+        msg: "{{ output }}"
+
+    - name: Confirm before APPLY (press Enter to proceed, CTRL+C then 'A' to abort)
+      ansible.builtin.pause:
+        prompt: "Proceed to APPLY + SAVE?"
+
+    ##########################################################################
+    # 4) Apply and Save (Cumulus 5.6 requires explicit save)
+    ##########################################################################
+    - name: Apply pending configuration (no auto-save on 5.6)
+      nvidia.nvue.command:
+        commands:
+          - nv config apply 
+        apply: false        
+        assume_yes: true
+
+    ##########################################################################
+    # 5) Verify new global HER list
+    ##########################################################################
+    - name: Verify VXLAN global HER after change
+      nvidia.nvue.command:
+        commands:
+          nv show nve vxlan flooding head-end-replication
+      register: after_show
+      changed_when: false
+
+    - name: Print final HER view
+      ansible.builtin.debug:
+        msg: "{{ after_show.stdout | default('') }}"

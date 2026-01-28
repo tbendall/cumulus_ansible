@@ -16,14 +16,14 @@
       ansible.builtin.debug:
         msg: '{{ revision.revid }}'
     
-#    - name: Router Config
-#      nvidia.nvue.router:
-#        state: merged
-#        revid: '{{ revision.revid }}'
-#        data:
-#          bgp:
-#            autonomous_system: "{{ bgp_asn }}"           # 'leaf'/'spine' or number
-#            router_id: "{{ bgp_routerid }}"
+    - name: Router Config
+      nvidia.nvue.router:
+        state: merged
+        revid: '{{ revision.revid }}'
+        data:
+          bgp:
+            autonomous_system: "{{ bgp_asn }}"           # 'leaf'/'spine' or number
+            router_id: "{{ bgp_routerid }}"
 
     - name: Set interface Loopback
       loop: "{{ interfaces }}"
