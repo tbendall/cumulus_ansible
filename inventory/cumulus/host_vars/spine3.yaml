@@ -1,0 +1,16 @@
+---
+
+hostname: "spine3"
+lo_ip: "10.10.20.3/32"
+bgp_asn: '65203'
+bgp_routerid: '10.10.20.3'
+interfaces:
+  - id: 'lo' 
+    ip: '10.10.20.3/32'
+    type: loopback
+    desc: 'Router Loopback'
+neighbors:
+  - name: swp1
+  - name: swp2
+  - name: swp3
+  - name: swp4

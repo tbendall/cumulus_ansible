@@ -1,0 +1,16 @@
+---
+
+hostname: "spine4"
+lo_ip: "10.10.20.4/32"
+bgp_asn: '65204'
+bgp_routerid: '10.10.20.4'
+interfaces:
+  - id: 'lo' 
+    ip: '10.10.20.4/32'
+    type: loopback
+    desc: 'Router Loopback'
+neighbors:
+  - name: swp1
+  - name: swp2
+  - name: swp3
+  - name: swp4
