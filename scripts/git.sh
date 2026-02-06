@@ -65,6 +65,7 @@ git -C "$TARGET_DIR" config user.email "tristan@bendall.co"
 # Optional: ensure Git always uses SSH for this repo
 git -C "$TARGET_DIR" config core.sshCommand "ssh -i $KEY_DEST -o IdentitiesOnly=yes"
 
-
+sudo apt update -y
+sudo apt install netplan.io kea -y
 
 echo "Done. /etc/ansible updated, preserving $TARGET_DIR/$PRESERVE_DIR"
