@@ -70,4 +70,7 @@ sudo apt install netplan.io kea -y
 
 ansible-galaxy collection install nvidia.nvue
 
+sudo cp kea/* /etc/kea/
+sudo systemctl restart kea-dhcp4-server
+
 echo "Done. /etc/ansible updated, preserving $TARGET_DIR/$PRESERVE_DIR"
