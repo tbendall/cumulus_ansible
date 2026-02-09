@@ -68,4 +68,6 @@ git -C "$TARGET_DIR" config core.sshCommand "ssh -i $KEY_DEST -o IdentitiesOnly=
 sudo apt update -y
 sudo apt install netplan.io kea -y
 
+ansible-galaxy collection install nvidia.nvue
+
 echo "Done. /etc/ansible updated, preserving $TARGET_DIR/$PRESERVE_DIR"
