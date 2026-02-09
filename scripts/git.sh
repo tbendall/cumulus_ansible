@@ -65,6 +65,12 @@ git -C "$TARGET_DIR" config user.email "tristan@bendall.co"
 # Optional: ensure Git always uses SSH for this repo
 git -C "$TARGET_DIR" config core.sshCommand "ssh -i $KEY_DEST -o IdentitiesOnly=yes"
 
+sudo apt update -y
+sudo apt install netplan.io kea -y
 
+ansible-galaxy collection install nvidia.nvue
+
+sudo cp kea/* /etc/kea/
+sudo systemctl restart kea-dhcp4-server
 
 echo "Done. /etc/ansible updated, preserving $TARGET_DIR/$PRESERVE_DIR"
