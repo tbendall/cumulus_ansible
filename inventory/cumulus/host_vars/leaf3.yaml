@@ -9,7 +9,6 @@ interfaces:
     ip: '10.10.10.3/32'
     type: loopback
     desc: 'Router Loopback'
-    desc: 'Leaf3-Spine2'
 neighbors:
   - name: swp1
   - name: swp3
