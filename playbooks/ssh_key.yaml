@@ -2,27 +2,25 @@
 
 
 - name: Bootstrap SSH key using password auth; optionally harden sshd
-  hosts: leaf1
+  hosts: all
   gather_facts: false
   become: false
 
-#  vars:
-#    ssh_home: "{{ (target_user == 'root') | ternary('/root', '/home/' ~ target_user) }}"
-#    ssh_dir: "{{ ssh_home }}/.ssh"
-#
-#  handlers:
-#    - name: restart sshd
-#      ansible.builtin.service:
-#        # Debian/Ubuntu use 'ssh', RHEL/CentOS/Alma/Rocky/SUSE use 'sshd'
-#        name: "{{ (ansible_facts['os_family'] == 'Debian') | ternary('ssh', 'sshd') }}"
-#        state: restarted
-#
-#  pre_tasks:
-#    - name: Ensure computed home directory path is valid
-#      ansible.builtin.assert:
-#        that:
-#          - ssh_home is match('^/.*')
-#        fail_msg: "Computed home '{{ ssh_home }}' seems invalid."
+  vars:
+    ssh_home: "{{ (target_user == 'root') | ternary('/root', '/home/' ~ target_user) }}"
+    ssh_dir: "{{ ssh_home }}/.ssh"
+  handlers:
+    - name: restart sshd
+      ansible.builtin.service:
+        # Debian/Ubuntu use 'ssh', RHEL/CentOS/Alma/Rocky/SUSE use 'sshd'
+        name: "{{ (ansible_facts['os_family'] == 'Debian') | ternary('ssh', 'sshd') }}"
+        state: restarted
+  pre_tasks:
+    - name: Ensure computed home directory path is valid
+      ansible.builtin.assert:
+        that:
+          - ssh_home is match('^/.*')
+        fail_msg: "Computed home '{{ ssh_home }}' seems invalid."
 
   tasks:
     - name: Create .ssh directory with secure permissions

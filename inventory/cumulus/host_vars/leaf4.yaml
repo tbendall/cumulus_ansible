@@ -10,5 +10,5 @@ interfaces:
     type: loopback
     desc: 'Router Loopback'
 neighbors:
-  - name: swp8
+  - name: swp2
   - name: swp4

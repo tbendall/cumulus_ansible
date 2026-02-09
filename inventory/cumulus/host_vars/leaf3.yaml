@@ -11,5 +11,6 @@ interfaces:
     desc: 'Router Loopback'
     desc: 'Leaf3-Spine2'
 neighbors:
+  - name: swp1
   - name: swp3
-  - name: swp7
+  - name: swp16

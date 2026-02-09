@@ -1,7 +1,7 @@
 
 ---
 - name: Configure BGP unnumbered via NVUE API
-  hosts: leafs:spines
+  hosts: all
   gather_facts: no
   remote_user: cumulus
   connection: ansible.netcommon.httpapi
@@ -16,6 +16,14 @@
       ansible.builtin.debug:
         msg: '{{ revision.revid }}'
     
+    - name: Set hostname
+      nvidia.nvue.system:
+        state: merged
+        revid: '{{ revision.revid }}'
+        data:
+          hostname: "{{ hostname }}"
+
+
     - name: Router Config
       nvidia.nvue.router:
         state: merged

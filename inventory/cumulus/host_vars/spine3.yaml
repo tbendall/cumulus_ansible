@@ -1,12 +1,12 @@
 ---
 
-hostname: "spine1"
-lo_ip: "10.10.20.1/32"
-bgp_asn: '65201'
-bgp_routerid: '10.10.20.1'
+hostname: "spine3"
+lo_ip: "10.10.20.3/32"
+bgp_asn: '65203'
+bgp_routerid: '10.10.20.3'
 interfaces:
   - id: 'lo' 
-    ip: '10.10.20.1/32'
+    ip: '10.10.20.3/32'
     type: loopback
     desc: 'Router Loopback'
 neighbors:
