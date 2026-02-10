@@ -12,4 +12,3 @@ interfaces:
 neighbors:
   - name: swp1
   - name: swp3
-  - name: swp16

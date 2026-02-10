@@ -1,0 +1,32 @@
+---
+
+targets:
+  leaf1:
+    address: 10.10.10.1:57400
+    username: cumulus
+    password: Lab1234!
+  leaf2:
+    address: 10.10.10.2:57400
+    username: cumulus
+    password: Lab1234!
+  leaf3:
+    address: 10.10.10.3:57400
+    username: cumulus
+    password: Lab1234!
+  leaf4:
+    address: 10.10.10.4:57400
+    username: cumulus
+    password: Lab1234!
+
+subscriptions:
+  interface_counters:
+    paths:
+      - /interface/state/counters
+    mode: stream
+    stream-mode: sample
+    sample-interval: 10s
+
+outputs:
+  prom:
+    type: prometheus
+    listen: ":9804"

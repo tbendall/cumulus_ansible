@@ -22,15 +22,15 @@
         state: new
       register: revision
   
-    - name: Set vxlan
-      loop: "{{ HER_remote_vteps }}"
-      nvidia.nvue.vxlan:
-        state: merged
-        revid: "{{ revision.revid }}"
-        data:
-          flooding:
-            head_end_replication:
-             - id: "{{ item }}"
+#    - name: Set vxlan
+#      loop: "{{ HER_remote_vteps }}"
+#      nvidia.nvue.vxlan:
+#        state: merged
+#        revid: "{{ revision.revid }}"
+#        data:
+#          flooding:
+#            head_end_replication:
+#             - id: "{{ item }}"
 
     - name: Dump revision
       ansible.builtin.debug:

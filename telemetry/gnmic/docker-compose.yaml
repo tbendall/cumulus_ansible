@@ -1,0 +1,12 @@
+---
+
+version: "3.7"
+services:
+  gnmic:
+    image: ghcr.io/karimra/gnmic:latest
+    container_name: gnmic
+    volumes:
+      - ./gnmic.yaml:/app/gnmic.yaml
+    command: ["--config", "/app/gnmic.yaml"]
+    ports:
+      - "9804:9804"

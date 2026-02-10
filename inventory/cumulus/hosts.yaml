@@ -37,7 +37,7 @@ leafs:
     leaf4:
   vars:
     vxlan_interfaces:
-      - id: swp16
+      - id: swp52
         vlan: 100
     vlans:
       - id: '100'
