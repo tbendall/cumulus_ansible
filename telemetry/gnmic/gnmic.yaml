@@ -12,6 +12,7 @@ targets:
     outputs:
       - output1
       - output2
+      - output3
 #  leaf2:
 #    address: 10.10.10.2:9339
 #    username: cumulus
@@ -40,6 +41,10 @@ outputs:
   output2:
     type: file
     filename: local.log
+  output3:
+    type: prometheus
+    listen: ":9804"
+
 
 subscriptions-order:
   - counters
