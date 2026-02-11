@@ -2,31 +2,45 @@
 
 targets:
   leaf1:
-    address: 10.10.10.1:57400
+    address: 192.168.200.11:9339
     username: cumulus
     password: Lab1234!
-  leaf2:
-    address: 10.10.10.2:57400
-    username: cumulus
-    password: Lab1234!
-  leaf3:
-    address: 10.10.10.3:57400
-    username: cumulus
-    password: Lab1234!
-  leaf4:
-    address: 10.10.10.4:57400
-    username: cumulus
-    password: Lab1234!
+    skip-verify: true
+    encoding: json_ietf
+    subscriptions:
+      - counters
+    outputs:
+      - output1
+      - output2
+#  leaf2:
+#    address: 10.10.10.2:9339
+#    username: cumulus
+#    password: Lab1234!
+#  leaf3:
+#    address: 10.10.10.3:9339
+#    username: cumulus
+#    password: Lab1234!
+#  leaf4:
+#    address: 10.10.10.4:9339
+#    username: cumulus
+#    password: Lab1234!
 
 subscriptions:
-  interface_counters:
-    paths:
-      - /interface/state/counters
+  counters:
     mode: stream
-    stream-mode: sample
-    sample-interval: 10s
+    paths:
+      - /interfaces/interface[name=eth0]/state/counters
+    stream-mode: on_Change
+    target: netq
 
 outputs:
-  prom:
-    type: prometheus
-    listen: ":9804"
+  output1:
+    type: file
+    file-type: stdout
+  output2:
+    type: file
+    filename: local.log
+
+subscriptions-order:
+  - counters
+
