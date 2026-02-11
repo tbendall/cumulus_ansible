@@ -104,6 +104,11 @@ cd /etc/ansible/telemetry/gnmic
 sudo docker compose down || true
 sudo docker compose up -d
 
+echo "Deploying Prometheus + Grafana via docker-compose..."
+cd /etc/ansible/telemetry
+sudo docker compose down || true
+sudo docker compose up -d
+
 
 
 echo "Done. /etc/ansible updated, preserving $TARGET_DIR/$PRESERVE_DIR"
