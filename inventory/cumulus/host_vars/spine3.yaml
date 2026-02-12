@@ -2,6 +2,7 @@
 
 hostname: "spine3"
 lo_ip: "10.10.20.3/32"
+mgmt_ip: "192.168.200.17"
 bgp_asn: '65203'
 bgp_routerid: '10.10.20.3'
 interfaces:

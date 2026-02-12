@@ -2,6 +2,7 @@
 
 hostname: "leaf4"
 lo_ip: "10.10.10.4/32"
+mgmt_ip: "192.168.200.14"
 bgp_asn: '65104'
 bgp_routerid: '10.10.10.4'
 interfaces:

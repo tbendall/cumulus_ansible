@@ -13,18 +13,42 @@ targets:
       - output1
       - output2
       - output3
-#  leaf2:
-#    address: 10.10.10.2:9339
-#    username: cumulus
-#    password: Lab1234!
-#  leaf3:
-#    address: 10.10.10.3:9339
-#    username: cumulus
-#    password: Lab1234!
-#  leaf4:
-#    address: 10.10.10.4:9339
-#    username: cumulus
-#    password: Lab1234!
+  leaf2:
+    address: 192.168.200.12:9339
+    username: cumulus
+    password: Lab1234!
+    skip-verify: true
+    encoding: json_ietf
+    subscriptions:
+      - counters
+    outputs:
+      - output1
+      - output2
+      - output3
+  leaf3:
+    address: 192.168.200.13:9339
+    username: cumulus
+    password: Lab1234!
+    skip-verify: true
+    encoding: json_ietf
+    subscriptions:
+      - counters
+    outputs:
+      - output1
+      - output2
+      - output3
+  leaf4:
+    address: 192.168.200.14:9339
+    username: cumulus
+    password: Lab1234!
+    skip-verify: true
+    encoding: json_ietf
+    subscriptions:
+      - counters
+    outputs:
+      - output1
+      - output2
+      - output3
 
 subscriptions:
   counters:
