@@ -6,7 +6,7 @@ services:
     container_name: prometheus
     volumes:
       - prometheus-data:/prometheus
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yaml
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
     restart: unless-stopped
@@ -20,7 +20,18 @@ services:
       - grafana-data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
     restart: unless-stopped
+  
+  gnmic:
+    image: ghcr.io/openconfig/gnmic:latest
+    container_name: gnmic
+    volumes:
+      - gnmic-data:/app
+      - ./gnmic/gnmic.yaml:/app/gnmic.yaml
+    command: "subscribe --config /app/gnmic.yaml"
+    ports:
+      - "9804:9804"
 
 volumes:
   prometheus-data:
   grafana-data:
+  gnmic-data:
