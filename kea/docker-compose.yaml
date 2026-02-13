@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  kea:
+    image: docker.cloudsmith.io/isc/docker/kea-dhcp4:3.0.2
+    container_name: kea4
+    ports:
+      - "67:67/udp"
+      - "67:67/tcp"
+      - "68:68/udp"
+      - "68:68/tcp"
+    volumes:
+      - kea-data:/var/lib/kea
+      - ./:/etc/kea/kea/
+    restart: unless-stopped
+    networks: 
+    - ipvlan0
+
+volumes:
+  kea-data:
+
+networks:
+  ipvlan0:
+    driver: ipvlan
+    driver_opts:
+      parent: eth0
