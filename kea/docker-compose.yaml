@@ -11,16 +11,12 @@ services:
       - "68:68/tcp"
     volumes:
       - kea-data:/var/lib/kea
-      - ./:/etc/kea/kea/
+      - kea-log:/var/log/kea
+      - ./kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf:ro
+      - ./kea-dhcp4.conf:/etc/kea/kea.conf
+#      - ./keactrl.conf:/etc/kea/keactrl.conf:ro
     restart: unless-stopped
-    networks: 
-    - ipvlan0
 
 volumes:
   kea-data:
-
-networks:
-  ipvlan0:
-    driver: ipvlan
-    driver_opts:
-      parent: eth0
+  kea-log:
