@@ -67,8 +67,6 @@ git -C "$TARGET_DIR" config core.sshCommand "ssh -i $KEY_DEST -o IdentitiesOnly=
 
 sudo apt update -y
 sudo apt install netplan.io kea -y
-<<<<<<< HEAD
-=======
 
 ansible-galaxy collection install nvidia.nvue
 
@@ -121,7 +119,6 @@ echo "Deploying Kea via docker-compose..."
 cd /etc/ansible/kea
 sudo docker compose down || true
 sudo docker compose up -d
->>>>>>> interpod
 
 ansible-galaxy collection install nvidia.nvue
 
