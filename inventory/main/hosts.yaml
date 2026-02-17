@@ -9,8 +9,6 @@ all:
     spine3:
     spine4:
     mgmt1:
-    wan1:
-    wan2:
   vars:
     backup_dir: "/etc/ansible/configs"
     ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
@@ -54,13 +52,3 @@ spines:
     spine2:
     spine3:
     spine4:
-
-WANs:
-  hosts:
-    wan1:
-    wan2:
-  vars:
-    wan_interfaces:
-    - swp1
-    - swp16
-
