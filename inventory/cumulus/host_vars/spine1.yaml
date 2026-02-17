@@ -2,6 +2,7 @@
 
 hostname: "spine1"
 lo_ip: "10.10.20.1/32"
+mgmt_ip: "192.168.200.15"
 bgp_asn: '65201'
 bgp_routerid: '10.10.20.1'
 interfaces:
@@ -12,5 +13,3 @@ interfaces:
 neighbors:
   - name: swp1
   - name: swp2
-  - name: swp3
-  - name: swp4

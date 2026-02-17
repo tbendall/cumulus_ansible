@@ -67,6 +67,61 @@ git -C "$TARGET_DIR" config core.sshCommand "ssh -i $KEY_DEST -o IdentitiesOnly=
 
 sudo apt update -y
 sudo apt install netplan.io kea -y
+<<<<<<< HEAD
+=======
+
+ansible-galaxy collection install nvidia.nvue
+
+sudo cp kea/* /etc/kea/
+sudo systemctl restart kea-dhcp4-server
+
+
+### Docker
+
+echo "Installing Docker..."
+sudo apt-get update -y
+sudo apt-get install -y \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+  https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt-get update -y
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+sudo systemctl enable docker
+sudo systemctl start docker
+
+echo "Deploying gnmic via docker-compose..."
+cd /etc/ansible/telemetry/gnmic
+sudo docker compose down || true
+sudo docker compose up -d
+
+echo "Deploying Prometheus + Grafana via docker-compose..."
+cd /etc/ansible/telemetry
+sudo docker compose down || true
+sudo docker compose up -d
+
+docker network create -d macvlan \
+  --subnet=192.168.200.0/24 \
+  --gateway=192.168.200.1 \
+  -o parent=eth0 \
+  dhcp-macvlan
+
+echo "Deploying Kea via docker-compose..."
+cd /etc/ansible/kea
+sudo docker compose down || true
+sudo docker compose up -d
+>>>>>>> interpod
 
 ansible-galaxy collection install nvidia.nvue
 

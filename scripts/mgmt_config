@@ -1,0 +1,11 @@
+nv set system hostname mgmt1 
+nv set bridge domain br_default vlan 1
+nv set bridge domain br_default untagged 1
+nv set interface swp1-16 bridge domain br_default access 1
+
+nv set interface svi1 type svi
+nv set interface svi1 ip address dhcp
+nv set interface svi1 vlan 1
+nv set interface svi1 base-interface br_default
+
+nv config apply -y

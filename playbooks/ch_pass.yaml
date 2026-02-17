@@ -1,0 +1,14 @@
+
+---
+- name: Change Password
+  hosts: leaf2
+  gather_facts: no
+  remote_user: cumulus
+  connection: ssh
+
+  pre_tasks:
+    - name: Clear forced password change on Cumulus
+      ansible.builtin.command: chage -d 0 {{ ansible_user }}
+      become: no
+      changed_when: false
+

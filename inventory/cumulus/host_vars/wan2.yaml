@@ -1,0 +1,15 @@
+---
+
+hostname: "wan2"
+lo_ip: "10.10.30.2/32"
+mgmt_ip: "192.168.200.20"
+bgp_asn: '65302'
+bgp_routerid: '10.10.30.2'
+interfaces:
+  - id: 'lo' 
+    ip: '10.10.30.2/32'
+    type: loopback
+    desc: 'Router Loopback'
+neighbors:
+  - name: swp1
+  - name: swp16

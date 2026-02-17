@@ -2,6 +2,7 @@
 
 hostname: "leaf3"
 lo_ip: "10.10.10.3/32"
+mgmt_ip: "192.168.200.13"
 bgp_asn: '65103'
 bgp_routerid: '10.10.10.3'
 interfaces:
@@ -9,7 +10,6 @@ interfaces:
     ip: '10.10.10.3/32'
     type: loopback
     desc: 'Router Loopback'
-    desc: 'Leaf3-Spine2'
 neighbors:
+  - name: swp1
   - name: swp3
-  - name: swp7

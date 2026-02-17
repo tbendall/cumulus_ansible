@@ -6,7 +6,11 @@ all:
     leaf4:
     spine1:
     spine2:
+    spine3:
+    spine4:
     mgmt1:
+    wan1:
+    wan2:
   vars:
     backup_dir: "/etc/ansible/configs"
     ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
@@ -14,9 +18,9 @@ all:
     ansible_httpapi_port: 8765
     ansible_httpapi_use_ssl: true
     ansible_httpapi_validate_certs: false
-    ansible_httpapi_password: 'Lab123'
+    ansible_httpapi_password: 'Lab1234!'
     ansible_user: 'cumulus'
-    ansible_password: 'Lab123'
+    ansible_password: 'Lab1234!'
     target_user: 'cumulus'
     ssh_pubkey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCvjs/RFPhxLQMkckONg+1RE1PTIO2JQhzFN9TRg7ox7o0tfZ+IzSB99lr2dmmVe8FRWgxVjc/V1RlmUck6M2ZL8G/jpHOvxtDTrcPo0q3de1ttmxpNpTz1nezOIegyY4yobDejYoPeXRX1mTwNPc9c/Gb00hOaoZo0Ae2laeSH8iofNpV6QHMTwxWdTXI0TZdZhVqgvDQMwL2wqXC03hxAtECs5znmWzf4gdeSmFVSCiS+OiLIwlqChwhFmbkxWCW2LSrPJkQ+QbdMJSx9JjWRL+IH9L2ikxsP6aE2h5K1hgMVTjiJMeYgHH9gPXa+Hywfu8W2TptFnAA2K4VSa6JPRHfjR3iieA2ZlDJD6M/4X4V+mhiVBf7CxKinpfcpZvMj4qVPgdfwINhV6iHp1V76WY5BJ4/V357i6sWBPw8k9+Ju4JNTPqGneKMovcF5z3u22ll4cndgIK+F/hbmNGH73GrcsMroYnYCmZst3i9aV4Ro5WBlsflmTgA96uLuqxk="
     ssh_authorized_key_path: "/home/cumulus/.ssh/authorized_keys"
@@ -33,7 +37,7 @@ leafs:
     leaf4:
   vars:
     vxlan_interfaces:
-      - id: swp16
+      - id: swp52
         vlan: 100
     vlans:
       - id: '100'
@@ -48,4 +52,15 @@ spines:
   hosts:
     spine1:
     spine2:
+    spine3:
+    spine4:
+
+WANs:
+  hosts:
+    wan1:
+    wan2:
+  vars:
+    wan_interfaces:
+    - swp1
+    - swp16
 

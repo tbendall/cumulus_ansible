@@ -2,7 +2,7 @@
 
 
 - name: Bootstrap SSH key using password auth; optionally harden sshd
-  hosts: leafs
+  hosts: all
   gather_facts: false
   become: false
 
@@ -30,7 +30,10 @@
     - name: Try config
       nvidia.nvue.command:
         commands:
-        - nv unset nve vxlan flooding 
+        - sudo systemctl enable netq-agent.service
+        - sudo systemctl start netq-agent.service
+        - netq config add agent gnmi-enable true
+        - netq config restart agent
         apply: true
         assume_yes: true
       register: output

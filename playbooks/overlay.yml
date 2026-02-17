@@ -1,73 +1,102 @@
 
 ---
 - name: Configure BGP unnumbered via NVUE API
-  hosts: leaf1
+  hosts: leafs
   gather_facts: no
   remote_user: cumulus
   connection: ansible.netcommon.httpapi
 
   tasks:
 
-#    - name: Build list of other leaf VTEPs
-#      set_fact:
-#        HER_remote_vteps: >-
-#          {{ groups['leafs']
-#            | difference([inventory_hostname])
-#            | map('extract', hostvars, 'bgp_routerid')
-#            | select('defined')
-#            | list }}
+    - name: Build list of other leaf VTEPs
+      set_fact:
+        HER_remote_vteps: >-
+          {{ groups['leafs']
+            | difference([inventory_hostname])
+            | map('extract', hostvars, 'bgp_routerid')
+            | select('defined')
+            | list }}
     
     - name: Create new revision
       nvidia.nvue.config:
         state: new
       register: revision
   
-    - name: Set vxlan
+#    - name: Set vxlan
 #      loop: "{{ HER_remote_vteps }}"
-      nvidia.nvue.vxlan:
-        state: merged
-        revid: "{{ revision.revid }}"
-        data:
-          flooding:
-            head_end_replication: []
+#      nvidia.nvue.vxlan:
+#        state: merged
+#        revid: "{{ revision.revid }}"
+#        data:
+#          flooding:
+#            head_end_replication:
+#             - id: "{{ item }}"
 
     - name: Dump revision
       ansible.builtin.debug:
         msg: '{{ revision.revid }}'
 
-#    - name: Set evpn
-#      nvidia.nvue.evpn:
-#        state: merged
-#        revid: '{{ revision.revid }}'
-#        data:
-#          enable: 'on'
-#
-#
-#    - name: Set bridge
-#      loop: "{{ query('subelements', vlans, 'vnis', {'skip_missing': False}) }}"
-#      nvidia.nvue.bridge:
-#        state: merged
-#        revid: '{{ revision.revid }}'
-#        data:
-#          - id: 'br_default'
-#            type: 'vlan-aware'
-#            vlan:
-#              - id: "{{ item.0.id }}"
-#                vni:
-#                  - id: "{{ item.1 }}"
-#
-#    - name: Set interfaces in Bridge
-#      loop: "{{ vxlan_interfaces }}"
-#      nvidia.nvue.interface:
-#        state: merged
-#        revid: '{{ revision.revid }}'
-#        data:
-#          - id: "{{ item.id }}"
-#            bridge:
-#              domain:
-#                - id: "br_default"
-#                  access: "{{ item.vlan }}"
+    - name: Set evpn
+      nvidia.nvue.evpn:
+        state: merged
+        revid: '{{ revision.revid }}'
+        data:
+          enable: 'on'
 
+
+    - name: Set bridge
+      loop: "{{ query('subelements', vlans, 'vnis', {'skip_missing': False}) }}"
+      nvidia.nvue.bridge:
+        state: merged
+        revid: '{{ revision.revid }}'
+        data:
+          - id: 'br_default'
+            type: 'vlan-aware'
+            vlan:
+              - id: "{{ item.0.id }}"
+                vni:
+                  - id: "{{ item.1 }}"
+
+    - name: Set interfaces in Bridge
+      loop: "{{ vxlan_interfaces }}"
+      nvidia.nvue.interface:
+        state: merged
+        revid: '{{ revision.revid }}'
+        data:
+          - id: "{{ item.id }}"
+            bridge:
+              domain:
+                - id: "br_default"
+                  access: "{{ item.vlan }}"
+
+    - name: Set VLAN interfaces
+      nvidia.nvue.interface:
+        state: merged 
+        revid: '{{ revision.revid }}'
+        data:
+          - id: 'vlan100'
+            ip:
+              address:
+                - id: '192.168.100.1/24'
+              vrr:
+                address: 
+                  - id: '192.168.100.1/24'
+                state:
+                  - id: up
+                mac_address: 00:0a:00:0a:00:0a           
+          - id: 'vlan200'
+            ip:
+              address:
+                - id: '192.168.201.1/24'
+              vrr:
+                address: 
+                  - id: '192.168.201.1/24'
+                state:
+                  - id: up
+                mac_address: 00:0a:00:0a:00:0a           
+
+      
+    
 
 
     - name: Apply new revision

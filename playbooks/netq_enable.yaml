@@ -1,0 +1,38 @@
+---
+- name: Configure NetQ Agent
+  hosts: leaf3:leaf4
+  gather_facts: no
+  become: yes
+
+  vars:
+    netq_server: "{{ mgmt_ip }}"
+
+  tasks:
+    - name: Ensure /etc/netq directory exists
+      file:
+        path: /etc/netq
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Deploy netq.yml
+      template:
+        src: /etc/ansible/templates/netq-yaml.j2
+        dest: /etc/netq/netq.yml
+        owner: root
+        group: root
+        mode: '0644'
+      notify:
+        - restart netq-agent
+
+    - name: Enable netq-agent
+      systemd:
+        name: netq-agent
+        enabled: yes
+
+  handlers:
+    - name: restart netq-agent
+      systemd:
+        name: netq-agent
+        state: restarted

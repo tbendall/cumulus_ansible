@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  kea:
+    image: docker.cloudsmith.io/isc/docker/kea-dhcp4:3.0.2
+    container_name: kea4
+#    ports:
+#      - "67:67/udp"
+#      - "67:67/tcp"
+#      - "68:68/udp"
+#      - "68:68/tcp"
+    volumes:
+      - kea-data:/var/lib/kea
+      - kea-log:/var/log/kea
+      - ./kea-dhcp4.conf:/etc/kea/kea-dhcp4.conf:ro
+      - ./kea-dhcp4.conf:/etc/kea/kea.conf
+#      - ./keactrl.conf:/etc/kea/keactrl.conf:ro
+    restart: unless-stopped
+    networks:
+      dhcp-macvlan:
+        ipv4_address: 192.168.200.2
+    cap_add:
+      - NET_ADMIN   # Required for DHCP server
+
+
+
+volumes:
+  kea-data:
+  kea-log:
+
+networks:
+  lan:
+    driver: macvlan
+    driver_opts:
+      parent: eth1
+    
+networks:
+  dhcp-macvlan:
+    external: true

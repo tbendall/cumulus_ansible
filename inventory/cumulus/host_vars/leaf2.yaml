@@ -2,6 +2,7 @@
 
 hostname: "leaf2"
 lo_ip: "10.10.10.2/32"
+mgmt_ip: "192.168.200.12"
 bgp_asn: '65102'
 bgp_routerid: '10.10.10.2'
 interfaces:
@@ -11,4 +12,5 @@ interfaces:
     desc: 'Router Loopback'
 neighbors:
   - name: swp2
-  - name: swp6
+  - name: swp4
+  - name: swp16
