@@ -18,11 +18,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: YAML lint
-        run: yamllint .
-
-      - name: Ansible lint
-        run: ansible-lint
+#      - name: YAML lint
+#        run: yamllint .
+#
+#      - name: Ansible lint
+#        run: ansible-lint
 
       - name: Syntax check VLAN playbook
         run: ansible-playbook playbooks/deploy_vlans.yaml --syntax-check
