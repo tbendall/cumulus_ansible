@@ -109,6 +109,16 @@ cd /etc/ansible/telemetry
 sudo docker compose down || true
 sudo docker compose up -d
 
+docker network create -d macvlan \
+  --subnet=192.168.200.0/24 \
+  --gateway=192.168.200.1 \
+  -o parent=eth0 \
+  dhcp-macvlan
+
+echo "Deploying Kea via docker-compose..."
+cd /etc/ansible/kea
+sudo docker compose down || true
+sudo docker compose up -d
 
 
 echo "Done. /etc/ansible updated, preserving $TARGET_DIR/$PRESERVE_DIR"
