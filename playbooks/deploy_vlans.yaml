@@ -1,0 +1,40 @@
+---
+
+- name: Configure BGP unnumbered via NVUE API
+  hosts: leafs
+  gather_facts: no
+  remote_user: cumulus
+  connection: ansible.netcommon.httpapi
+
+  tasks:
+
+    - name: Create new revision
+      nvidia.nvue.config:
+        state: new
+      register: revision
+
+    - name: Set bridge
+      loop: "{{ vlans }}"
+      loop_control:
+        loop_var: vlan
+      nvidia.nvue.bridge:
+        state: merged
+        revid: '{{ revision.revid }}'
+        data:
+          - id: 'br_default'
+            type: 'vlan-aware'
+            vlan:
+              - id: "{{ vlan.id }}"
+                vni:
+                  - id: "{{ vlan.vni }}"
+
+    - name: Dump revision
+      ansible.builtin.debug:
+        msg: '{{ revision.revid }}'
+
+    - name: Apply new revision
+      nvidia.nvue.config:
+        state: apply
+        revid: '{{ revision.revid }}'
+        force: true
+      register: revision

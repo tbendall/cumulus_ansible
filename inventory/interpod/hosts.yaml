@@ -39,13 +39,13 @@ leafs:
     vxlan_interfaces:
       - id: swp52
         vlan: 100
-    vlans:
-      - id: '100'
-        vnis:
-          - '100'
-      - id: '200'
-        vnis:
-          - '200'
+#    vlans:
+#      - id: '100'
+#        vnis:
+#          - '100'
+#      - id: '200'
+#        vnis:
+#          - '200'
 
 
 spines:

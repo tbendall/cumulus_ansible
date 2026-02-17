@@ -1,0 +1,53 @@
+name: VLAN CI/CD
+
+on:
+  pull_request:
+    paths:
+      - 'inventory/interpod/group_vars/leafs/vlans/vlans.yaml'
+
+  push:
+    branches: [ main ]
+    paths:
+      - 'inventory/interpod/group_vars/leafs/vlans/vlans.yaml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: YAML lint
+        run: yamllint .
+
+      - name: Ansible lint
+        run: ansible-lint
+
+      - name: Syntax check VLAN playbook
+        run: ansible-playbook playbooks/deploy_vlans.yaml --syntax-check
+
+#  deploy:
+#    needs: validate
+#    if: github.ref == 'refs/heads/main'
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout repo
+#        uses: actions/checkout@v4
+#
+#      - name: Set up Python
+#        uses: actions/setup-python@v5
+#        with:
+#          python-version: '3.x'
+#
+#      - name: Install Ansible
+#        run: pip install ansible
+#
+#      - name: Add SSH key
+#        uses: webfactory/ssh-agent@v0.9.0
+#        with:
+#          ssh-private-key: ${{ secrets.ANSIBLE_SSH_KEY }}
+#
+#      - name: Deploy VLANs
+#        run: ansible-playbook -i inventory/interpod playbooks/deploy_vlans.yaml
