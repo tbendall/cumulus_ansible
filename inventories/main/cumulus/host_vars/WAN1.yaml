@@ -1,0 +1,14 @@
+---
+
+hostname: "WAN1"
+lo_ip: "10.10.30.1/32"
+bgp_asn: '65301'
+bgp_routerid: '10.10.30.1'
+interfaces:
+  - id: 'lo' 
+    ip: '10.10.30.1/32'
+    type: loopback
+    desc: 'Router Loopback'
+neighbors:
+  - name: swp1
+  - name: swp16
