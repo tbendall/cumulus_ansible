@@ -49,5 +49,5 @@ jobs:
 #        with:
 #          ssh-private-key: ${{ secrets.ANSIBLE_SSH_KEY }}
 #
-#      - name: Deploy VLANs
-#        run: ansible-playbook -i inventory/interpod playbooks/deploy_vlans.yaml
+      - name: Deploy VLANs
+        run: ansible-playbook -i inventory/interpod playbooks/deploy_vlans.yaml
