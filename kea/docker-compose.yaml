@@ -1,5 +1,5 @@
+---
 version: "3.9"
-
 services:
   kea:
     image: docker.cloudsmith.io/isc/docker/kea-dhcp4:3.0.2
@@ -21,19 +21,14 @@ services:
         ipv4_address: 192.168.200.2
     cap_add:
       - NET_ADMIN   # Required for DHCP server
-
-
-
 volumes:
   kea-data:
   kea-log:
-
 networks:
   lan:
     driver: macvlan
     driver_opts:
-      parent: eth1
-    
+      parent: eth1   
 networks:
   dhcp-macvlan:
     external: true

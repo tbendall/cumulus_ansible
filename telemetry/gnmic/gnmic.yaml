@@ -1,5 +1,4 @@
 ---
-
 targets:
   leaf1:
     address: 192.168.200.11:9339
@@ -49,7 +48,6 @@ targets:
       - output1
       - output2
       - output3
-
 subscriptions:
   counters:
     mode: stream
@@ -57,7 +55,6 @@ subscriptions:
       - /interfaces/interface[name=eth0]/state/counters
     stream-mode: on_Change
     target: netq
-
 outputs:
   output1:
     type: file
@@ -68,8 +65,5 @@ outputs:
   output3:
     type: prometheus
     listen: ":9804"
-
-
 subscriptions-order:
   - counters
-

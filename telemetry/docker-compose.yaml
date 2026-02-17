@@ -1,5 +1,5 @@
+---
 version: "3.9"
-
 services:
   prometheus:
     image: prom/prometheus:latest
@@ -10,7 +10,6 @@ services:
     ports:
       - "9090:9090"
     restart: unless-stopped
-
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
@@ -20,7 +19,6 @@ services:
       - grafana-data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
     restart: unless-stopped
-  
   gnmic:
     image: ghcr.io/openconfig/gnmic:latest
     container_name: gnmic
@@ -30,7 +28,6 @@ services:
     command: "subscribe --config /app/gnmic.yaml"
     ports:
       - "9804:9804"
-
 volumes:
   prometheus-data:
   grafana-data:
