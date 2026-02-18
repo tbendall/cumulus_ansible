@@ -26,7 +26,7 @@ jobs:
       - name: Run VLAN playbook on automation server
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@worker08.air.nvidia.com -p21534 \
-            "cd /etc/ansible && ansible-playbook -i inventory/interpod playbooks/deploy_vlans.yaml --syntax-check"
+            "cd /etc/ansible && ansible-playbook -i inventory/interpod playbooks/deploy_vlans.yaml"
 
 
 #  deploy:
@@ -51,5 +51,5 @@ jobs:
 #        with:
 #          ssh-private-key: ${{ secrets.ANSIBLE_SSH_KEY }}
 #
-      - name: Deploy VLANs
-        run: ansible-playbook -i inventory/interpod playbooks/deploy_vlans.yaml
+#      - name: Deploy VLANs
+#        run: ansible-playbook -i inventory/interpod playbooks/deploy_vlans.yaml
