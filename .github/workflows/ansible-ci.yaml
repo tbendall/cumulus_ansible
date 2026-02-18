@@ -25,7 +25,7 @@ jobs:
 
       - name: Run VLAN playbook on automation server
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@oob-mgmt-server \
+          ssh -o StrictHostKeyChecking=no ubuntu@worker08.air.nvidia.com -p21534 \
             "cd /etc/ansible && ansible-playbook -i inventory/interpod playbooks/deploy_vlans.yaml --syntax-check"
 
 
