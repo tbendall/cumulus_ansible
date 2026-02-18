@@ -15,4 +15,4 @@ jobs:
 
       - name: Test SSH to automation server
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@oob-mgmt-server "echo 'Connected successfully to automation server'"
+          ssh -o StrictHostKeyChecking=no ubuntu@worker08.air.nvidia.com -p21534 "echo 'Connected successfully to automation server'"
