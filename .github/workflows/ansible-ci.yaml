@@ -27,29 +27,3 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@worker08.air.nvidia.com -p21534 \
             "cd /etc/ansible && ansible-playbook -i inventory/interpod playbooks/deploy_vlans.yaml"
-
-
-#  deploy:
-#    needs: validate
-#    if: github.ref == 'refs/heads/main'
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Checkout repo
-#        uses: actions/checkout@v4
-#
-#      - name: Set up Python
-#        uses: actions/setup-python@v5
-#        with:
-#          python-version: '3.x'
-#
-#      - name: Install Ansible
-#        run: pip install ansible
-#
-#      - name: Add SSH key
-#        uses: webfactory/ssh-agent@v0.9.0
-#        with:
-#          ssh-private-key: ${{ secrets.ANSIBLE_SSH_KEY }}
-#
-#      - name: Deploy VLANs
-#        run: ansible-playbook -i inventory/interpod playbooks/deploy_vlans.yaml
