@@ -1,0 +1,21 @@
+- name: Check BGP sessions
+  nvidia.nvue.command:
+    commands:
+      - nv show vrf default router bgp neighbor brief -o json
+  register: output
+  no_log: true
+
+
+
+- name: Parse JSON
+  set_fact:
+    bgp: "{{ output.message | from_json }}"
+  no_log: true
+  
+
+
+
+- name: Print neighbour states
+  debug:
+    msg: "Neighbor {{ item.key }} is {{ item.value.state }}"
+  loop: "{{ bgp | dict2items }}"

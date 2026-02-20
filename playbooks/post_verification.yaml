@@ -1,0 +1,9 @@
+---
+
+- name: Verify
+  hosts: leafs
+  gather_facts: no
+  remote_user: cumulus
+#  connection: ansible.netcommon.httpapi
+  roles:
+    - verify_underlay
