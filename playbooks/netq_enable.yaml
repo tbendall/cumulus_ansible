@@ -1,6 +1,6 @@
 ---
 - name: Configure NetQ Agent
-  hosts: leaf3:leaf4
+  hosts: all
   gather_facts: no
   become: yes
 

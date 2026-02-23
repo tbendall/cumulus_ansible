@@ -22,6 +22,13 @@
     {{ groups['leafs'] | join(' ') }}
   register: mac_check
 
+- name: Execute script with inventory devices
+  command: >
+    /usr/bin/python3 /etc/ansible/scripts/thread_bgp.py
+    {{ groups['leafs'] | join(' ') }}
+  register: bgp_check
+
 - name: Display output
   ansible.builtin.debug:
     msg: "{{ mac_check.stdout_lines }}"
+    msg: "{{ bgp_check.stdout_lines }}"
