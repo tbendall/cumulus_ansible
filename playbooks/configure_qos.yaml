@@ -1,0 +1,19 @@
+- name: Configure QoS
+  hosts: all
+  gather_facts: false
+  become: false
+
+  tasks:
+
+
+    - name: Try config
+      nvidia.nvue.command:
+        commands:
+          - nv set qos roce
+        apply: true
+        assume_yes: true
+      register: output
+
+    - name: Print NVUE diff for operator review
+      ansible.builtin.debug:
+        msg: "{{ output }}"

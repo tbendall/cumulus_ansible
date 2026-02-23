@@ -3,12 +3,17 @@ import requests
 from requests.auth import HTTPBasicAuth
 import urllib3
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import sys
+
+
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-devices = ["leaf1","leaf2","leaf3","leaf4"]
+#devices = ["leaf1","leaf2","leaf3","leaf4"]
 
-auth = HTTPBasicAuth("cumulus","Lab123")
+devices = sys.argv[1:]
+
+auth = HTTPBasicAuth("cumulus","Lab1234!")
 URL_TMPL = "https://{device}:8765/nvue_v1/evpn/vni/100/mac"
 
 MAX_WORKERS = 200
