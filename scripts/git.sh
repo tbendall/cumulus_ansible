@@ -15,6 +15,8 @@ TEMP_CLONE_DIR="$(mktemp -d)"
 TARGET_DIR="/etc/ansible"
 PRESERVE_DIR="scripts"
 
+cd $TAR
+
 sudo chown ubuntu:ubuntu . -R
 
 # Ensure ~/.ssh exists

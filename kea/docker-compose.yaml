@@ -28,7 +28,12 @@ networks:
   lan:
     driver: macvlan
     driver_opts:
-      parent: eth1   
-networks:
+      parent: eth1  
   dhcp-macvlan:
-    external: true
+    driver: macvlan
+    driver_opts:
+      parent: eth1
+    ipam:
+      config:
+        - subnet: 192.168.200.0/24
+          gateway: 192.168.200.1
