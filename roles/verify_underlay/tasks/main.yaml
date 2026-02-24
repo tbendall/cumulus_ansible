@@ -19,13 +19,13 @@
 - name: Execute script with inventory devices
   command: >
     /usr/bin/python3 /etc/ansible/scripts/thread_evpn.py
-    {{ groups['leafs'] | join(' ') }}
+    {{ groups['all'] | join(' ') }}
   register: mac_check
 
 - name: Execute script with inventory devices
   command: >
     /usr/bin/python3 /etc/ansible/scripts/thread_bgp.py
-    {{ groups['leafs'] | join(' ') }}
+    {{ groups['all'] | join(' ') }}
   register: bgp_check
 
 - name: Display output

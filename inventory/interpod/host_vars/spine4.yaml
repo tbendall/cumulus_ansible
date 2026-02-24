@@ -4,12 +4,12 @@ hostname: "spine4"
 lo_ip: "10.10.20.4/32"
 mgmt_ip: "192.168.200.17"
 bgp_asn: '65204'
-bgp_routerid: '10.10.20.34'
+bgp_routerid: '10.10.20.4'
 interfaces:
   - id: 'lo' 
-    ip: '10.10.20.3/32'
+    ip: '10.10.20.4/32'
     type: loopback
     desc: 'Router Loopback'
 neighbors:
-  - name: swp1
-  - name: swp2
+  - name: swp3
+  - name: swp4

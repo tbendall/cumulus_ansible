@@ -2,7 +2,7 @@
 
 
 - name: Bootstrap SSH key using password auth; optionally harden sshd
-  hosts: all
+  hosts: leaf2:leaf3
   gather_facts: false
   become: false
 
@@ -27,22 +27,33 @@
   tasks:
 
 
+#    - name: Try config
+#      nvidia.nvue.command:
+#        commands:
+#        - sudo systemctl enable netq-agent.service
+#        - sudo systemctl start netq-agent.service
+#        - netq config add agent gnmi-enable true
+#        - netq config restart agent
+#        apply: true
+#        assume_yes: true
+#      register: output
+#
+#    - name: Print NVUE diff for operator review
+#      ansible.builtin.debug:
+#        msg: "{{ output }}"
+
     - name: Try config
       nvidia.nvue.command:
         commands:
-        - sudo systemctl enable netq-agent.service
-        - sudo systemctl start netq-agent.service
-        - netq config add agent gnmi-enable true
-        - netq config restart agent
+        - nv set vrf default router bgp neighbor 10.10.10.3
+        - nv set vrf default router bgp neighbor 10.10.10.2
         apply: true
-        assume_yes: true
+        assume_yes: false
       register: output
 
     - name: Print NVUE diff for operator review
       ansible.builtin.debug:
         msg: "{{ output }}"
-
-
 
 
 #    - name: Create .ssh directory with secure permissions

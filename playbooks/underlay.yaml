@@ -1,7 +1,7 @@
 
 ---
 - name: Configure BGP unnumbered via NVUE API
-  hosts: all
+  hosts: leaf2:leaf3
   gather_facts: no
   remote_user: cumulus
   connection: ansible.netcommon.httpapi
@@ -68,12 +68,31 @@
                 router_id: "{{ bgp_routerid }}"
                 neighbor:
                   - id: "{{ item.name }}"
-                    peer_group: 'underlay'
-                    type: 'unnumbered'
+                    peer_group: "underlay"
+                    type: "{{ item.type | default('unnumbered') }}"
                 peer_group:
                   - id: 'underlay'
                     address_family:
                       l2vpn_evpn:
+                        enable: 'on'
+                    remote_as: 'external'
+
+    - name: Set DCI neighbors
+      loop: "{{ wan_neighbours }}"
+      nvidia.nvue.vrf:
+        state: merged
+        revid: '{{ revision.revid }}'
+        data:
+          - id: 'default'
+            router:
+              bgp:
+                neighbor:
+                  - id: "{{ item.name }}"
+                    peer_group: 'dci'
+                peer_group:
+                  - id: 'dci'
+                    address_family:
+                      ipv4_unicast:
                         enable: 'on'
                     remote_as: 'external'
 

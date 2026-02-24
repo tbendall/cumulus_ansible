@@ -13,4 +13,7 @@ interfaces:
 neighbors:
   - name: swp2
   - name: swp4
+  - name: 10.10.10.3
+    type: numbered
+wan_neighbours:
   - name: swp16

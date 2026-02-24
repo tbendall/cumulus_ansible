@@ -1,7 +1,7 @@
 ---
 
 - name: Remove Config
-  hosts: leafs
+  hosts: spine4
   gather_facts: no
   remote_user: cumulus
   connection: ansible.netcommon.httpapi
