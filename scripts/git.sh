@@ -124,7 +124,7 @@ sudo docker compose up -d
 
 ansible-galaxy collection install nvidia.nvue
 
-sudo cp kea/* /etc/kea/
-sudo systemctl restart kea-dhcp4-server
+#sudo cp kea/* /etc/kea/
+#sudo systemctl restart kea-dhcp4-server
 
 echo "Done. /etc/ansible updated, preserving $TARGET_DIR/$PRESERVE_DIR"
