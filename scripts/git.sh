@@ -15,7 +15,7 @@ TEMP_CLONE_DIR="$(mktemp -d)"
 TARGET_DIR="/etc/ansible"
 PRESERVE_DIR="scripts"
 
-cd $TAR
+cd $TARGET_DIR
 
 sudo chown ubuntu:ubuntu . -R
 
