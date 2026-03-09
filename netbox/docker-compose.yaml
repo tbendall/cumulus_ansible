@@ -1,0 +1,102 @@
+# docker-compose.yml - Complete NetBox stack
+# Includes the web app, background worker, PostgreSQL, and Redis
+version: "3.8"
+
+services:
+  netbox:
+    image: netboxcommunity/netbox:latest
+    container_name: netbox
+    restart: unless-stopped
+    ports:
+      - "8001:8080"
+    environment: &netbox-env
+      SUPERUSER_API_TOKEN: "0123456789abcdef0123456789abcdef01234567"
+      SUPERUSER_EMAIL: "admin@example.com"
+      SUPERUSER_NAME: "admin"
+      SUPERUSER_PASSWORD: "admin"
+      ALLOWED_HOSTS: "*"
+      DB_HOST: postgres
+      DB_NAME: netbox
+      DB_PASSWORD: netbox_db_password
+      DB_USER: netbox
+      REDIS_CACHE_HOST: redis-cache
+      REDIS_HOST: redis
+      SECRET_KEY: "your-very-long-secret-key-change-this-in-production"
+    volumes:
+      - netbox-media:/opt/netbox/netbox/media
+      - netbox-reports:/opt/netbox/netbox/reports
+      - netbox-scripts:/opt/netbox/netbox/scripts
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Background worker processes async tasks like webhooks
+  netbox-worker:
+    image: netboxcommunity/netbox:latest
+    container_name: netbox-worker
+    restart: unless-stopped
+    command: /opt/netbox/venv/bin/python /opt/netbox/netbox/manage.py rqworker
+    environment: *netbox-env
+    volumes:
+      - netbox-media:/opt/netbox/netbox/media
+      - netbox-reports:/opt/netbox/netbox/reports
+      - netbox-scripts:/opt/netbox/netbox/scripts
+    depends_on:
+      - netbox
+
+  # Housekeeping job cleans up old sessions and change logs
+  netbox-housekeeping:
+    image: netboxcommunity/netbox:latest
+    container_name: netbox-housekeeping
+    restart: unless-stopped
+    command: /opt/netbox/housekeeping.sh
+    environment: *netbox-env
+    depends_on:
+      - netbox
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: netbox-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: netbox
+      POSTGRES_USER: netbox
+      POSTGRES_PASSWORD: netbox_db_password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U netbox"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: netbox-redis
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  redis-cache:
+    image: redis:7-alpine
+    container_name: netbox-redis-cache
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  netbox-media:
+  netbox-reports:
+  netbox-scripts:
+  postgres-data:
+  redis-data:
