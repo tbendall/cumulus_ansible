@@ -72,9 +72,6 @@ sudo apt install netplan.io kea -y
 
 ansible-galaxy collection install nvidia.nvue
 
-sudo cp kea/* /etc/kea/
-sudo systemctl restart kea-dhcp4-server
-
 
 ### Docker
 
