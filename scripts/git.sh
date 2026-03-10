@@ -119,6 +119,11 @@ cd /etc/ansible/kea
 sudo docker compose down || true
 sudo docker compose up -d
 
+echo "Deploying Netbox via docker-compose..."
+cd /etc/ansible/netbox
+sudo docker compose down || true
+sudo docker compose up -d
+
 ansible-galaxy collection install nvidia.nvue
 
 #sudo cp kea/* /etc/kea/
