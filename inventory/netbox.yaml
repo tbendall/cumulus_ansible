@@ -1,0 +1,13 @@
+---
+
+plugin: netbox.netbox.nb_inventory
+api_endpoint: http://localhost:8001
+
+headers:
+  Authorization: "Bearer nbt_vV1iRwy7cCK2.wmYZ1UcncpTHjNBQDNAijhjQhK24Z2vcaagRfnwb"
+
+token: "vV1iRwy7cCK2.wmYZ1UcncpTHjNBQDNAijhjQhK24Z2vcaagRfnwb"
+validate_certs: true
+
+group_by: 
+  - sites

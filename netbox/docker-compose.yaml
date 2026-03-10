@@ -22,6 +22,7 @@ services:
       REDIS_CACHE_HOST: redis-cache
       REDIS_HOST: redis
       SECRET_KEY: "your-very-long-secret-key-change-this-in-production"
+      API_TOKEN_PEPPER_1: "HrK64FXcI0XLzIHuueqhYX08WlAFqDYBcdvDBWklalkjsdlasJDSJEojksjelaksaqwpoeqcas"
     volumes:
       - netbox-media:/opt/netbox/netbox/media
       - netbox-reports:/opt/netbox/netbox/reports

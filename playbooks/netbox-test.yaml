@@ -1,0 +1,13 @@
+---
+
+- name: Gather NetBox-driven data
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - debug:
+        var: ansible_host
+    - debug:
+        var: custom_fields
+    - debug:
+        var: interfaces
