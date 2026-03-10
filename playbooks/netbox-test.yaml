@@ -6,8 +6,5 @@
 
   tasks:
     - debug:
-        var: ansible_host
-    - debug:
-        var: custom_fields
-    - debug:
-        var: interfaces
+        var: hostvars["leaf1"]["interfaces"]
+

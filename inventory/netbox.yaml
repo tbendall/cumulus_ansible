@@ -2,6 +2,11 @@
 
 plugin: netbox.netbox.nb_inventory
 api_endpoint: http://localhost:8001
+interfaces: true
+ip_addresses: true
+config_context: true
+custom_fields: true
+
 
 headers:
   Authorization: "Bearer nbt_vV1iRwy7cCK2.wmYZ1UcncpTHjNBQDNAijhjQhK24Z2vcaagRfnwb"
