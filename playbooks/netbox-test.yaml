@@ -6,5 +6,5 @@
 
   tasks:
     - debug:
-        var: hostvars["leaf1"]["interfaces"]
+        var: hostvars["leaf1"]["oob_ip"]
 
