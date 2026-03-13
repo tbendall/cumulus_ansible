@@ -71,6 +71,7 @@ sudo apt update -y
 sudo apt install netplan.io kea -y
 
 ansible-galaxy collection install nvidia.nvue
+ansible-galaxy collection install netbox.netbox
 
 
 ### Docker

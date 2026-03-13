@@ -45,7 +45,7 @@ if __name__ == "__main__":
             print(d)
             for k,v in r['data'].items():
                 # Print remote neighbour and state
-                print(k, v['remote-router-id'], v['state'])
+                print(k, v.keys())
 
         else:
             print(f"{d} failed: {r.get('error')}")
