@@ -1,7 +1,7 @@
 
 ---
 - name: Configure BGP unnumbered via NVUE API
-  hosts: leaf2:leaf3
+  hosts: leafs:spines
   gather_facts: no
   remote_user: cumulus
   connection: ansible.netcommon.httpapi
@@ -43,7 +43,6 @@
             ip:
               address:
                 - id: "{{ item.ip }}"
-              vrf: 'default'
             type: loopback
 
     - name: Set vrf
@@ -79,6 +78,7 @@
 
     - name: Set DCI neighbors
       loop: "{{ wan_neighbours }}"
+      when: inventory_hostname in ['leaf2', 'leaf3']
       nvidia.nvue.vrf:
         state: merged
         revid: '{{ revision.revid }}'

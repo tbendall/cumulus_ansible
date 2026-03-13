@@ -16,3 +16,17 @@ validate_certs: true
 
 group_by: 
   - sites
+
+compose:
+  ansible_host: >
+    {{ interfaces
+       | selectattr('name', 'equalto', 'eth0')
+       | map(attribute='ip_addresses')
+       | first
+       | map(attribute='address')
+       | first
+       | ipaddr('address')
+    }}
+
+
+platform: nvue
