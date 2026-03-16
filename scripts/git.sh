@@ -68,7 +68,7 @@ git -C "$TARGET_DIR" config user.email "tristan@bendall.co"
 git -C "$TARGET_DIR" config core.sshCommand "ssh -i $KEY_DEST -o IdentitiesOnly=yes"
 
 sudo apt update -y
-sudo apt install netplan.io kea -y
+sudo apt install netplan.io -y
 
 ansible-galaxy collection install nvidia.nvue
 ansible-galaxy collection install netbox.netbox
@@ -129,5 +129,7 @@ ansible-galaxy collection install nvidia.nvue
 
 #sudo cp kea/* /etc/kea/
 #sudo systemctl restart kea-dhcp4-server
+
+sudo python3 -m pip install pynetbox
 
 echo "Done. /etc/ansible updated, preserving $TARGET_DIR/$PRESERVE_DIR"

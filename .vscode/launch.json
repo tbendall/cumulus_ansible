@@ -5,13 +5,15 @@
     "version": "0.2.0",
     "configurations": [
 
+
         {
             "name": "Python Debugger: Current File with Arguments",
             "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": "leaf1"
+            "args": "leaf1",
+            "cwd": "/etc/ansible/scripts"
         }
     ]
 }

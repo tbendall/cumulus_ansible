@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict BHhprHvs6RCf3dDZOTxJYaiGEicIrKsme64aftoUgQ2nyuPIGYka9SRhohEmPh7
+\restrict DYXFtkdUVfev1ZrZcUqqE9FPgNicnJBnAoZ5a79809aGcl9LruBfG6Dw7LeylOT
 
 -- Dumped from database version 15.17
 -- Dumped by pg_dump version 15.17
@@ -7574,11 +7574,13 @@ COPY public.core_datasource (id, created, last_updated, custom_field_data, descr
 
 COPY public.core_job (id, object_id, name, created, scheduled, "interval", started, completed, status, data, job_id, object_type_id, user_id, error, log_entries, queue_name) FROM stdin;
 1	\N	System Housekeeping	2026-03-09 10:10:33.763965+00	\N	1440	2026-03-09 10:10:33.812762+00	2026-03-09 10:10:34.205397+00	errored	\N	813c5f01-278d-49a6-959f-690aecc2b782	\N	\N	ProgrammingError('relation "django_session" does not exist\\nLINE 1: ...ession_data", "django_session"."expire_date" FROM "django_se...\\n                                                             ^')	{"{\\"level\\": \\"info\\", \\"message\\": \\"Reporting census data...\\", \\"timestamp\\": \\"2026-03-09T10:10:33.866Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Clearing expired sessions...\\", \\"timestamp\\": \\"2026-03-09T10:10:34.202Z\\"}"}	default
+6	\N	System Housekeeping	2026-03-13 10:10:33.365446+00	2026-03-14 10:10:33.812762+00	1440	2026-03-16 09:47:12.808102+00	2026-03-16 09:47:13.108682+00	completed	\N	a17d77ee-787f-442a-b9bb-0390ef599337	\N	\N		{"{\\"level\\": \\"info\\", \\"message\\": \\"Reporting census data...\\", \\"timestamp\\": \\"2026-03-16T09:47:12.883Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Clearing expired sessions...\\", \\"timestamp\\": \\"2026-03-16T09:47:13.090Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Sessions cleared.\\", \\"timestamp\\": \\"2026-03-16T09:47:13.095Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Pruning old changelog entries...\\", \\"timestamp\\": \\"2026-03-16T09:47:13.095Z\\"}","{\\"level\\": \\"debug\\", \\"message\\": \\"Changelog retention period: 90 days (2025-12-16 09:47:13)\\", \\"timestamp\\": \\"2026-03-16T09:47:13.103Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleted 0 expired changelog records\\", \\"timestamp\\": \\"2026-03-16T09:47:13.105Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleting expired jobs...\\", \\"timestamp\\": \\"2026-03-16T09:47:13.105Z\\"}","{\\"level\\": \\"debug\\", \\"message\\": \\"Job retention period: 90 days (2025-12-16 09:47:13)\\", \\"timestamp\\": \\"2026-03-16T09:47:13.107Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleted 0 expired jobs\\", \\"timestamp\\": \\"2026-03-16T09:47:13.108Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Checking for new releases...\\", \\"timestamp\\": \\"2026-03-16T09:47:13.108Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"RELEASE_CHECK_URL is not set; skipping\\", \\"timestamp\\": \\"2026-03-16T09:47:13.108Z\\"}"}	default
 2	\N	System Housekeeping	2026-03-09 10:10:34.221668+00	2026-03-10 10:10:33.812762+00	1440	2026-03-10 10:10:33.813318+00	2026-03-10 10:10:34.037644+00	completed	\N	283671ab-cd06-4c2c-9730-b2d4de6bf85e	\N	\N		{"{\\"level\\": \\"info\\", \\"message\\": \\"Reporting census data...\\", \\"timestamp\\": \\"2026-03-10T10:10:33.863Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Clearing expired sessions...\\", \\"timestamp\\": \\"2026-03-10T10:10:34.023Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Sessions cleared.\\", \\"timestamp\\": \\"2026-03-10T10:10:34.026Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Pruning old changelog entries...\\", \\"timestamp\\": \\"2026-03-10T10:10:34.026Z\\"}","{\\"level\\": \\"debug\\", \\"message\\": \\"Changelog retention period: 90 days (2025-12-10 10:10:34)\\", \\"timestamp\\": \\"2026-03-10T10:10:34.032Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleted 0 expired changelog records\\", \\"timestamp\\": \\"2026-03-10T10:10:34.034Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleting expired jobs...\\", \\"timestamp\\": \\"2026-03-10T10:10:34.034Z\\"}","{\\"level\\": \\"debug\\", \\"message\\": \\"Job retention period: 90 days (2025-12-10 10:10:34)\\", \\"timestamp\\": \\"2026-03-10T10:10:34.036Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleted 0 expired jobs\\", \\"timestamp\\": \\"2026-03-10T10:10:34.037Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Checking for new releases...\\", \\"timestamp\\": \\"2026-03-10T10:10:34.037Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"RELEASE_CHECK_URL is not set; skipping\\", \\"timestamp\\": \\"2026-03-10T10:10:34.037Z\\"}"}	default
 3	\N	System Housekeeping	2026-03-10 10:10:34.045526+00	2026-03-11 10:10:33.812762+00	1440	2026-03-11 14:33:11.047932+00	2026-03-11 14:33:11.456754+00	completed	\N	544dd9f1-66fa-4415-885b-5191abe3469f	\N	\N		{"{\\"level\\": \\"info\\", \\"message\\": \\"Reporting census data...\\", \\"timestamp\\": \\"2026-03-11T14:33:11.199Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Clearing expired sessions...\\", \\"timestamp\\": \\"2026-03-11T14:33:11.438Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Sessions cleared.\\", \\"timestamp\\": \\"2026-03-11T14:33:11.442Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Pruning old changelog entries...\\", \\"timestamp\\": \\"2026-03-11T14:33:11.442Z\\"}","{\\"level\\": \\"debug\\", \\"message\\": \\"Changelog retention period: 90 days (2025-12-11 14:33:11)\\", \\"timestamp\\": \\"2026-03-11T14:33:11.450Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleted 0 expired changelog records\\", \\"timestamp\\": \\"2026-03-11T14:33:11.453Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleting expired jobs...\\", \\"timestamp\\": \\"2026-03-11T14:33:11.453Z\\"}","{\\"level\\": \\"debug\\", \\"message\\": \\"Job retention period: 90 days (2025-12-11 14:33:11)\\", \\"timestamp\\": \\"2026-03-11T14:33:11.455Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleted 0 expired jobs\\", \\"timestamp\\": \\"2026-03-11T14:33:11.456Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Checking for new releases...\\", \\"timestamp\\": \\"2026-03-11T14:33:11.456Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"RELEASE_CHECK_URL is not set; skipping\\", \\"timestamp\\": \\"2026-03-11T14:33:11.456Z\\"}"}	default
 4	\N	System Housekeeping	2026-03-11 14:33:11.468422+00	2026-03-12 10:10:33.812762+00	1440	2026-03-12 10:10:33.403471+00	2026-03-12 10:10:33.663222+00	completed	\N	95bcd70b-c691-4bc4-a3d6-12fb1c10d48d	\N	\N		{"{\\"level\\": \\"info\\", \\"message\\": \\"Reporting census data...\\", \\"timestamp\\": \\"2026-03-12T10:10:33.468Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Clearing expired sessions...\\", \\"timestamp\\": \\"2026-03-12T10:10:33.643Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Sessions cleared.\\", \\"timestamp\\": \\"2026-03-12T10:10:33.647Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Pruning old changelog entries...\\", \\"timestamp\\": \\"2026-03-12T10:10:33.647Z\\"}","{\\"level\\": \\"debug\\", \\"message\\": \\"Changelog retention period: 90 days (2025-12-12 10:10:33)\\", \\"timestamp\\": \\"2026-03-12T10:10:33.656Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleted 0 expired changelog records\\", \\"timestamp\\": \\"2026-03-12T10:10:33.659Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleting expired jobs...\\", \\"timestamp\\": \\"2026-03-12T10:10:33.659Z\\"}","{\\"level\\": \\"debug\\", \\"message\\": \\"Job retention period: 90 days (2025-12-12 10:10:33)\\", \\"timestamp\\": \\"2026-03-12T10:10:33.661Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleted 0 expired jobs\\", \\"timestamp\\": \\"2026-03-12T10:10:33.663Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Checking for new releases...\\", \\"timestamp\\": \\"2026-03-12T10:10:33.663Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"RELEASE_CHECK_URL is not set; skipping\\", \\"timestamp\\": \\"2026-03-12T10:10:33.663Z\\"}"}	default
 5	\N	System Housekeeping	2026-03-12 10:10:33.67223+00	2026-03-13 10:10:33.812762+00	1440	2026-03-13 10:10:33.086075+00	2026-03-13 10:10:33.356243+00	completed	\N	2e64cde7-5268-4f21-8b73-d14429bb2e19	\N	\N		{"{\\"level\\": \\"info\\", \\"message\\": \\"Reporting census data...\\", \\"timestamp\\": \\"2026-03-13T10:10:33.152Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Clearing expired sessions...\\", \\"timestamp\\": \\"2026-03-13T10:10:33.339Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Sessions cleared.\\", \\"timestamp\\": \\"2026-03-13T10:10:33.343Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Pruning old changelog entries...\\", \\"timestamp\\": \\"2026-03-13T10:10:33.343Z\\"}","{\\"level\\": \\"debug\\", \\"message\\": \\"Changelog retention period: 90 days (2025-12-13 10:10:33)\\", \\"timestamp\\": \\"2026-03-13T10:10:33.350Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleted 0 expired changelog records\\", \\"timestamp\\": \\"2026-03-13T10:10:33.353Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleting expired jobs...\\", \\"timestamp\\": \\"2026-03-13T10:10:33.353Z\\"}","{\\"level\\": \\"debug\\", \\"message\\": \\"Job retention period: 90 days (2025-12-13 10:10:33)\\", \\"timestamp\\": \\"2026-03-13T10:10:33.355Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleted 0 expired jobs\\", \\"timestamp\\": \\"2026-03-13T10:10:33.356Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Checking for new releases...\\", \\"timestamp\\": \\"2026-03-13T10:10:33.356Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"RELEASE_CHECK_URL is not set; skipping\\", \\"timestamp\\": \\"2026-03-13T10:10:33.356Z\\"}"}	default
-6	\N	System Housekeeping	2026-03-13 10:10:33.365446+00	2026-03-14 10:10:33.812762+00	1440	\N	\N	scheduled	\N	a17d77ee-787f-442a-b9bb-0390ef599337	\N	\N		{}	default
+7	\N	System Housekeeping	2026-03-16 09:47:13.12198+00	2026-03-16 09:48:13.118169+00	1440	2026-03-16 09:48:13.554463+00	2026-03-16 09:48:13.817549+00	completed	\N	c385dd12-b616-462e-bacf-e6e65043d254	\N	\N		{"{\\"level\\": \\"info\\", \\"message\\": \\"Reporting census data...\\", \\"timestamp\\": \\"2026-03-16T09:48:13.617Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Clearing expired sessions...\\", \\"timestamp\\": \\"2026-03-16T09:48:13.801Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Sessions cleared.\\", \\"timestamp\\": \\"2026-03-16T09:48:13.805Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Pruning old changelog entries...\\", \\"timestamp\\": \\"2026-03-16T09:48:13.805Z\\"}","{\\"level\\": \\"debug\\", \\"message\\": \\"Changelog retention period: 90 days (2025-12-16 09:48:13)\\", \\"timestamp\\": \\"2026-03-16T09:48:13.812Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleted 0 expired changelog records\\", \\"timestamp\\": \\"2026-03-16T09:48:13.814Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleting expired jobs...\\", \\"timestamp\\": \\"2026-03-16T09:48:13.814Z\\"}","{\\"level\\": \\"debug\\", \\"message\\": \\"Job retention period: 90 days (2025-12-16 09:48:13)\\", \\"timestamp\\": \\"2026-03-16T09:48:13.816Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Deleted 0 expired jobs\\", \\"timestamp\\": \\"2026-03-16T09:48:13.817Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"Checking for new releases...\\", \\"timestamp\\": \\"2026-03-16T09:48:13.817Z\\"}","{\\"level\\": \\"info\\", \\"message\\": \\"RELEASE_CHECK_URL is not set; skipping\\", \\"timestamp\\": \\"2026-03-16T09:48:13.817Z\\"}"}	default
+8	\N	System Housekeeping	2026-03-16 09:48:13.827498+00	2026-03-17 09:48:13.118169+00	1440	\N	\N	scheduled	\N	10067fd4-a015-403a-9306-c5c98a0e0c9b	\N	\N		{}	default
 \.
 
 
@@ -7840,6 +7842,9 @@ COPY public.core_objectchange (id, "time", user_name, request_id, action, change
 243	2026-03-13 12:27:53.478137+00	admin	340c01b5-71cb-433e-9a60-6cfc310860c0	create	2	54	192.168.200.11/24	\N	{"vrf": null, "role": null, "tags": [], "owner": null, "status": "active", "tenant": null, "address": "192.168.200.11/24", "created": "2026-03-13T12:27:53.460Z", "comments": "", "dns_name": "", "nat_inside": null, "description": "", "custom_fields": {}, "assigned_object_id": 54, "assigned_object_type": 7}	95	7	1	
 244	2026-03-13 12:27:53.50366+00	admin	340c01b5-71cb-433e-9a60-6cfc310860c0	update	3	\N	leaf1	{"face": "", "name": "leaf1", "rack": null, "role": 1, "site": 1, "tags": [], "owner": null, "oob_ip": null, "serial": "", "status": "active", "tenant": null, "airflow": null, "cluster": null, "created": "2026-03-10T09:14:47.234Z", "comments": "", "latitude": null, "location": null, "platform": null, "position": null, "asset_tag": null, "longitude": null, "description": "", "device_type": 2, "primary_ip4": 1, "primary_ip6": null, "vc_position": null, "vc_priority": null, "custom_fields": {}, "config_template": null, "interface_count": 54, "rear_port_count": 0, "virtual_chassis": null, "device_bay_count": 0, "front_port_count": 0, "module_bay_count": 2, "power_port_count": 0, "console_port_count": 1, "local_context_data": null, "power_outlet_count": 0, "inventory_item_count": 0, "console_server_port_count": 0}	{"face": "", "name": "leaf1", "rack": null, "role": 1, "site": 1, "tags": [], "owner": null, "oob_ip": 2, "serial": "", "status": "active", "tenant": null, "airflow": null, "cluster": null, "created": "2026-03-10T09:14:47.234Z", "comments": "", "latitude": null, "location": null, "platform": null, "position": null, "asset_tag": null, "longitude": null, "description": "", "device_type": 2, "primary_ip4": 1, "primary_ip6": null, "vc_position": null, "vc_priority": null, "custom_fields": {}, "config_template": null, "interface_count": 54, "rear_port_count": 0, "virtual_chassis": null, "device_bay_count": 0, "front_port_count": 0, "module_bay_count": 2, "power_port_count": 0, "console_port_count": 1, "local_context_data": null, "power_outlet_count": 0, "inventory_item_count": 0, "console_server_port_count": 0}	13	\N	1	
 245	2026-03-13 14:16:07.446706+00	admin	bd10f73f-18e6-48ae-93e6-aa34345657c8	update	3	\N	leaf1	{"face": "", "name": "leaf1", "rack": null, "role": 1, "site": 1, "tags": [], "owner": null, "oob_ip": 2, "serial": "", "status": "active", "tenant": null, "airflow": null, "cluster": null, "created": "2026-03-10T09:14:47.234Z", "comments": "", "latitude": null, "location": null, "platform": null, "position": null, "asset_tag": null, "longitude": null, "description": "", "device_type": 2, "primary_ip4": 1, "primary_ip6": null, "vc_position": null, "vc_priority": null, "custom_fields": {}, "config_template": null, "interface_count": 54, "rear_port_count": 0, "virtual_chassis": null, "device_bay_count": 0, "front_port_count": 0, "module_bay_count": 2, "power_port_count": 0, "console_port_count": 1, "local_context_data": null, "power_outlet_count": 0, "inventory_item_count": 0, "console_server_port_count": 0}	{"face": "", "name": "leaf1", "rack": null, "role": 1, "site": 1, "tags": [], "owner": null, "oob_ip": 2, "serial": "", "status": "active", "tenant": null, "airflow": null, "cluster": null, "created": "2026-03-10T09:14:47.234Z", "comments": "", "latitude": null, "location": null, "platform": null, "position": null, "asset_tag": null, "longitude": null, "description": "", "device_type": 2, "primary_ip4": 2, "primary_ip6": null, "vc_position": null, "vc_priority": null, "custom_fields": {}, "config_template": null, "interface_count": 54, "rear_port_count": 0, "virtual_chassis": null, "device_bay_count": 0, "front_port_count": 0, "module_bay_count": 2, "power_port_count": 0, "console_port_count": 1, "local_context_data": null, "power_outlet_count": 0, "inventory_item_count": 0, "console_server_port_count": 0}	13	\N	1	
+246	2026-03-16 10:30:36.108894+00	admin	bab747b4-6eed-4be7-ae1b-1b3597e30405	create	1	\N	Test_RIR	\N	{"name": "Test_RIR", "slug": "test_rir", "tags": [], "owner": null, "created": "2026-03-16T10:30:36.093Z", "comments": "", "is_private": false, "description": "", "custom_fields": {}}	90	\N	1	
+247	2026-03-16 10:31:15.024365+00	admin	5eba1182-b8fd-464f-8a12-57ca9d1b1495	create	1	\N	ASN_SPINES (65200-65299)	\N	{"end": 65299, "rir": 1, "name": "ASN_SPINES", "slug": "asn_spines", "tags": [], "owner": null, "start": 65200, "tenant": null, "created": "2026-03-16T10:31:15.012Z", "comments": "", "description": "Spine ASN Range", "custom_fields": {}}	86	\N	1	
+248	2026-03-16 10:31:30.76604+00	admin	36774ef7-4a51-40b6-9d60-4524a29ede83	create	2	\N	ASN_LEAFS (65100-65199)	\N	{"end": 65199, "rir": 1, "name": "ASN_LEAFS", "slug": "asn_leafs", "tags": [], "owner": null, "start": 65100, "tenant": null, "created": "2026-03-16T10:31:30.762Z", "comments": "", "description": "", "custom_fields": {}}	86	\N	1	
 \.
 
 
@@ -9497,6 +9502,9 @@ e77dabc7-ca40-4efb-a16f-82d719a96678	2026-03-10 09:15:55.173395+00	2	start_addre
 daa3b708-10e7-4d7c-a286-3c2792c36bd0	2026-03-10 09:15:55.173441+00	2	description	str	OOB Range	500	94
 fc9bc714-6466-4bcf-8f69-d6ea871d9a12	2026-03-13 14:16:07.431017+00	2	address	inet	192.168.200.11/24	100	95
 03e6252c-9e44-4b26-a6b3-39c9a922e432	2026-03-13 14:16:07.490646+00	3	name	str	leaf1	100	13
+2ffdcb67-2d75-484d-97dc-da57253808ac	2026-03-16 10:31:15.028912+00	1	name	str	ASN_SPINES	100	86
+b4184fef-b417-4977-893d-798de37ebcc2	2026-03-16 10:31:15.02895+00	1	description	str	Spine ASN Range	500	86
+10408343-5151-443b-895f-36ae1e736072	2026-03-16 10:31:30.768367+00	2	name	str	ASN_LEAFS	100	86
 95eb2d85-3c5f-4b5e-8df5-0dee73ceb936	2026-03-10 09:14:47.26578+00	2	name	str	con0	100	43
 1df12024-1bb4-4a54-b16c-905f03824718	2026-03-10 09:14:47.479487+00	54	name	str	eth0	100	7
 e238791f-5dd8-41b1-8e8e-8bb176134133	2026-03-10 09:14:47.485236+00	55	name	str	Lo0	100	7
@@ -9554,6 +9562,8 @@ b0d238a0-449a-436d-af2e-bcee85c1018c	2026-03-10 09:14:47.722362+00	104	name	str	
 97eacf02-9351-457c-ab19-5ac15a020afe	2026-03-10 09:14:47.737967+00	107	name	str	swp52	100	7
 258c04ca-aba6-420c-8fc7-9f04c4d953c7	2026-03-10 09:14:47.76564+00	3	name	str	PSU1	100	50
 c256c821-85e1-4952-883e-5d66e4a0a3de	2026-03-10 09:14:47.77766+00	4	name	str	PSU2	100	50
+9051eccf-3507-4e7c-82a0-0d53c3f616ca	2026-03-16 10:30:36.113063+00	1	name	str	Test_RIR	100	90
+39e026e5-41d8-4b6d-ac87-464fbbe1d51a	2026-03-16 10:30:36.113098+00	1	slug	str	test_rir	110	90
 \.
 
 
@@ -9907,6 +9917,8 @@ COPY public.ipam_asn (created, last_updated, custom_field_data, id, asn, descrip
 --
 
 COPY public.ipam_asnrange (id, created, last_updated, custom_field_data, description, name, slug, start, "end", rir_id, tenant_id, owner_id, comments) FROM stdin;
+1	2026-03-16 10:31:15.012631+00	2026-03-16 10:31:15.012648+00	{}	Spine ASN Range	ASN_SPINES	asn_spines	65200	65299	1	\N	\N	
+2	2026-03-16 10:31:30.762989+00	2026-03-16 10:31:30.763007+00	{}		ASN_LEAFS	asn_leafs	65100	65199	1	\N	\N	
 \.
 
 
@@ -9959,6 +9971,7 @@ COPY public.ipam_prefix (created, last_updated, custom_field_data, id, prefix, s
 --
 
 COPY public.ipam_rir (created, last_updated, custom_field_data, id, name, slug, is_private, description, owner_id, comments) FROM stdin;
+2026-03-16 10:30:36.093804+00	2026-03-16 10:30:36.093818+00	{}	1	Test_RIR	test_rir	f		\N	
 \.
 
 
@@ -10624,7 +10637,7 @@ SELECT pg_catalog.setval('public.core_datasource_id_seq', 1, false);
 -- Name: core_job_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netbox
 --
 
-SELECT pg_catalog.setval('public.core_job_id_seq', 6, true);
+SELECT pg_catalog.setval('public.core_job_id_seq', 8, true);
 
 
 --
@@ -10638,7 +10651,7 @@ SELECT pg_catalog.setval('public.core_managedfile_id_seq', 1, false);
 -- Name: core_objectchange_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netbox
 --
 
-SELECT pg_catalog.setval('public.core_objectchange_id_seq', 245, true);
+SELECT pg_catalog.setval('public.core_objectchange_id_seq', 248, true);
 
 
 --
@@ -11331,7 +11344,7 @@ SELECT pg_catalog.setval('public.ipam_asn_id_seq', 1, false);
 -- Name: ipam_asnrange_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netbox
 --
 
-SELECT pg_catalog.setval('public.ipam_asnrange_id_seq', 1, false);
+SELECT pg_catalog.setval('public.ipam_asnrange_id_seq', 2, true);
 
 
 --
@@ -11373,7 +11386,7 @@ SELECT pg_catalog.setval('public.ipam_prefix_id_seq', 1, false);
 -- Name: ipam_rir_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netbox
 --
 
-SELECT pg_catalog.setval('public.ipam_rir_id_seq', 1, false);
+SELECT pg_catalog.setval('public.ipam_rir_id_seq', 1, true);
 
 
 --
@@ -24076,5 +24089,5 @@ ALTER TABLE ONLY public.wireless_wirelesslink
 -- PostgreSQL database dump complete
 --
 
-\unrestrict BHhprHvs6RCf3dDZOTxJYaiGEicIrKsme64aftoUgQ2nyuPIGYka9SRhohEmPh7
+\unrestrict DYXFtkdUVfev1ZrZcUqqE9FPgNicnJBnAoZ5a79809aGcl9LruBfG6Dw7LeylOT
 
