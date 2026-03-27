@@ -127,6 +127,9 @@ sudo docker compose up -d
 
 ansible-galaxy collection install nvidia.nvue
 
+cd /etc/ansible/netbox
+docker exec -i netbox-postgres psql -U netbox -d netbox < netbox_dump.sql
+
 #sudo cp kea/* /etc/kea/
 #sudo systemctl restart kea-dhcp4-server
 

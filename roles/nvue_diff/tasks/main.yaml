@@ -1,0 +1,40 @@
+# roles/nvue_diff/tasks/main.yml  (API mode)
+#- name: Get applied config (filled=false keeps output smaller)
+#  nvidia.nvue.api:
+#    operation: get
+#    filled: false
+#    revid: applied
+#  register: _cfg_base
+#  
+#- name: Get target config (filled=false keeps output smaller)
+#  nvidia.nvue.api:
+#    operation: get
+#    filled: false
+#    revid: "{{ revision.revid }}"
+#  register: _cfg_target
+#
+#- name: Compute structured diff (base -> target)
+#  ansible.builtin.set_fact:
+#    nvue_fact_diff: "{{  _cfg_target | ansible.utils.fact_diff(_cfg_base)  }}"
+#
+#- name: Print Out
+#  ansible.builtin.debug:
+#    msg: "{{ _cfg_target }}"
+
+
+#- name: Execute script with inventory devices
+#  command: >
+#    /usr/bin/python3 /etc/ansible/scripts/get_diff.py {{ groups['all'] | join(' ') }}
+#  register: bgp_check
+
+- name: Execute script with inventory devices
+  command: >
+    /usr/bin/python3 /etc/ansible/scripts/get_diff.py 
+    --devices {{ inventory_hostname }} 
+    --config_type candidate
+    --revision {{ revision.revid }}
+  register: diff_check
+
+- name: Print Out
+  ansible.builtin.debug:
+    msg: "{{ diff_check }}"

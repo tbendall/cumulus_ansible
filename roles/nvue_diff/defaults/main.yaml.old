@@ -1,0 +1,36 @@
+---
+# Base revision to diff against: applied | startup | pending | <number>
+nvue_diff_base: "applied"
+
+# Output format:
+# - "commands" => set/unset commands (best for reviews + grepping)
+# - "yaml"     => NVUE YAML diff (if you prefer)
+nvue_diff_format: "commands"
+
+# Write a markdown report artifact
+nvue_diff_write_report: true
+nvue_diff_report_dir: "reports"
+nvue_diff_report_filename: "{{ inventory_hostname }}-nvue-diff-{{ nvue_diff_base }}-to-{{ nvue_revid }}.md"
+
+# Gatekeeping
+nvue_diff_enforce: false  # if true, fail on fail-pattern matches
+
+# Patterns considered "hard stop"
+# Tune these to your environment.
+nvue_diff_fail_on_patterns:
+  - '^\s*unset\s+router\s+bgp\b'
+  - '^\s*unset\s+vrf\b'
+  - '^\s*unset\s+interface\b'
+  - '^\s*unset\s+mlag\b'
+  - '^\s*set\s+system\s+api\b'
+
+# Patterns considered "warning / requires eyeballs"
+nvue_diff_warn_on_patterns:
+  - '\brouter\s+bgp\b'
+  - '\bvrf\b'
+  - '\binterface\b'
+  - '\bmlag\b'
+  - '\bevpn\b'
+
+# Optional: limit report length (avoid huge diffs)
+nvue_diff_max_lines: 4000

@@ -11,9 +11,9 @@ ansible_host_dns_name: True
 
 
 headers:
-  Authorization: "Bearer nbt_vV1iRwy7cCK2.wmYZ1UcncpTHjNBQDNAijhjQhK24Z2vcaagRfnwb"
+  Authorization: "Bearer nbt_HmR5bROfRCS0.S9jtuyLOAnr9PV8LA7evYSc0bnH2oH7klOdZBwup"
 
-token: "vV1iRwy7cCK2.wmYZ1UcncpTHjNBQDNAijhjQhK24Z2vcaagRfnwb"
+token: "HmR5bROfRCS0.S9jtuyLOAnr9PV8LA7evYSc0bnH2oH7klOdZBwup"
 validate_certs: true
 
 group_by: 

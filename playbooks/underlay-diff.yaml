@@ -1,0 +1,122 @@
+
+---
+- name: Configure BGP unnumbered via NVUE API
+  hosts: leaf2
+  gather_facts: no
+  remote_user: cumulus
+  connection: ansible.netcommon.httpapi
+  
+  tasks:
+    - name: Create new revision
+      nvidia.nvue.config:
+        state: new
+      register: revision
+
+    - name: Dump revision
+      ansible.builtin.debug:
+        msg: '{{ revision.revid }}'
+    
+    - name: Set hostname
+      nvidia.nvue.system:
+        state: merged
+        revid: '{{ revision.revid }}'
+        data:
+          hostname: "{{ hostname }}"
+
+
+    - name: Router Config
+      nvidia.nvue.router:
+        state: merged
+        revid: '{{ revision.revid }}'
+        data:
+          bgp:
+            autonomous_system: "{{ bgp_asn }}"           # 'leaf'/'spine' or number
+            router_id: "{{ bgp_routerid }}"
+
+    - name: Set interface Loopback
+      loop: "{{ interfaces }}"
+      nvidia.nvue.interface:
+        state: merged
+        revid: '{{ revision.revid }}'
+        data:
+          - id: '{{ item.id }}'
+            ip:
+              address:
+                - id: "{{ item.ip }}"
+            type: loopback
+
+    - name: Set vrf
+      loop: "{{ neighbors }}"
+      nvidia.nvue.vrf:
+        state: merged
+        revid: '{{ revision.revid }}'
+        data:
+          - id: 'default'
+            router:
+              bgp:
+                address_family:
+                  ipv4_unicast:
+                    enable: 'on'
+                    redistribute:
+                      connected:
+                        enable: 'on'
+                  l2vpn_evpn:
+                    enable: 'on'
+                autonomous_system: "{{ bgp_asn }}"
+                enable: 'on'
+                router_id: "{{ bgp_routerid }}"
+                neighbor:
+                  - id: "{{ item.name }}"
+                    peer_group: "underlay"
+                    type: "{{ item.type | default('unnumbered') }}"
+                peer_group:
+                  - id: 'underlay'
+                    address_family:
+                      l2vpn_evpn:
+                        enable: 'on'
+                    remote_as: 'external'
+
+    - name: Set DCI neighbors
+      loop: "{{ wan_neighbours }}"
+      when: inventory_hostname in ['leaf2', 'leaf3']
+      nvidia.nvue.vrf:
+        state: merged
+        revid: '{{ revision.revid }}'
+        data:
+          - id: 'default'
+            router:
+              bgp:
+                neighbor:
+                  - id: "{{ item.name }}"
+                    peer_group: 'dci'
+                peer_group:
+                  - id: 'dci'
+                    address_family:
+                      ipv4_unicast:
+                        enable: 'on'
+                    remote_as: 'external'
+
+
+
+    - name: Generate NVUE diff (API-based)
+      include_role:
+        name: nvue_diff
+
+    - name: Render NVUE diff report
+      ansible.builtin.template:
+        src: "/etc/ansible/templates/report.md.j2"
+        dest: "reports/{{ inventory_hostname }}-nvue-diff-{{ revision.revid }}.md"
+      vars:
+        nvue_diff_base: "running"
+        nvue_revid: "{{ revision.revid }}"
+
+
+
+
+
+#    - name: Apply new revision
+#      nvidia.nvue.config:
+#        state: apply
+#        revid: '{{ revision.revid }}'
+#        force: true
+#      register: revision
