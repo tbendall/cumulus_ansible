@@ -37,4 +37,4 @@
 
 - name: Print Out
   ansible.builtin.debug:
-    msg: "{{ diff_check }}"
+    - msg: "{{ diff_check }}"
