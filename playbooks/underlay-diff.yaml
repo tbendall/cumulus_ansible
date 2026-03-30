@@ -122,11 +122,23 @@
 #        dest: "{{ inventory_hostname }}-nvue-diff-{{ revision.revid }}.txt"
 #      delegate_to: localhost
 
+    - name: Human approval
+      pause:
+        prompt: |
+          Diff displayed above.
+          Saved to reports/{{ inventory_hostname }}.diff
+          Type 'yes' to continue, anything else to abort.
+      register: approval
+
+    - name: Abort if not approved
+      fail:
+        msg: "Deployment aborted by operator."
+      when: approval.user_input != 'yes'
 
 
-#    - name: Apply new revision
-#      nvidia.nvue.config:
-#        state: apply
-#        revid: '{{ revision.revid }}'
-#        force: true
-#      register: revision
+    - name: Apply new revision
+      nvidia.nvue.config:
+        state: apply
+        revid: '{{ revision.revid }}'
+        force: true
+      register: revision
