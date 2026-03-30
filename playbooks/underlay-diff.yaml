@@ -96,21 +96,31 @@
                         enable: 'on'
                     remote_as: 'external'
 
-
-
     - name: Generate NVUE diff (API-based)
       include_role:
         name: nvue_diff
 
-#    - name: Render NVUE diff report
-#      ansible.builtin.template:
-#        src: "/etc/ansible/templates/report.md.j2"
-#        dest: "reports/{{ inventory_hostname }}-nvue-diff-{{ revision.revid }}.md"
-#      vars:
-#        nvue_diff_base: "running"
-#        nvue_revid: "{{ revision.revid }}"
+    - name: Render NVUE diff report
+      ansible.builtin.template:
+        src: "/etc/ansible/templates/report.md.j2"
+        dest: "reports/{{ inventory_hostname }}-nvue-diff-{{ revision.revid }}.md"
+      vars:
+        nvue_diff_base: "{{ nvue_fact_diff }}"
+        nvue_revid: "{{ revision.revid }}"
 
-
+#    - name: Create your local file on master node
+#      ansible.builtin.file:
+#        path: "/etc/ansible/reports/"
+#        owner: ubuntu
+#        group: ubuntu
+#        mode: '0644'
+#      delegate_to: localhost
+#
+#    - name: Print output to file
+#      ansible.builtin.copy:
+#        content: "{{ nvue_fact_diff.diff_lines }}"
+#        dest: "{{ inventory_hostname }}-nvue-diff-{{ revision.revid }}.txt"
+#      delegate_to: localhost
 
 
 

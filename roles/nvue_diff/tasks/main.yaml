@@ -43,9 +43,7 @@
   register: applied
 
 - name: Compute structured diff (base -> target)
-  ansible.builtin.set_fact:
-    nvue_fact_diff: "{{ applied.stdout | from_json | ansible.utils.fact_diff(candidate.stdout | from_json) }}"
-
-- name: Print Out
-  ansible.builtin.debug:
-    msg: "{{ nvue_fact_diff }}"
+  ansible.utils.fact_diff:
+    before: "{{ applied.stdout | from_json }}"
+    after:  "{{ candidate.stdout | from_json }}"
+  register: nvue_fact_diff

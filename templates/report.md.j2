@@ -1,30 +1,10 @@
 # NVUE Diff Report (API-based)
 
 **Device:** {{ inventory_hostname }}
-**Base revision:** {{ nvue_diff_base }}
 **Target revision:** {{ nvue_revid }}
 
 ---
 
-## Summary
-
-- Added keys: {{ nvue_fact_diff.added | length }}
-- Removed keys: {{ nvue_fact_diff.removed | length }}
-- Changed keys: {{ nvue_fact_diff.changed | length }}
-
-{% if (nvue_fact_diff.removed | length) > 0 %}
-## ❌ Removed (review carefully)
-{% for item in nvue_fact_diff.removed %}
-- {{ item }}
-{% endfor %}
-{% endif %}
-
-## ✅ Added
-{% for item in nvue_fact_diff.added %}
-- {{ item }}
-{% endfor %}
-
-## 🔁 Changed
-{% for item in nvue_fact_diff.changed %}
-- {{ item }}
-{% endfor %}
+```diff
+{{ nvue_fact_diff.diff_lines | default([]) | join('\n') }}
+```
