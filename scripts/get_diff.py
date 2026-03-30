@@ -5,10 +5,11 @@ import urllib3
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import sys
 import argparse
+import json
 
 ## Curl command
 
-# curl -u 'cumulus:Lab1234!' --insecure -X GET "https://leaf1:8765/nvue_v1/?rev=<revid>&diff=applied&filled=false"
+# curl -u 'cumulus:Lab1234!' --insecure -X GET "https://leaf1:8765/nvue_v1/?rev=<revid>&diff=applied"
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -27,7 +28,7 @@ revision = args.revision
 
 auth = HTTPBasicAuth("cumulus","Lab1234!")
 APPLIED_URL_TMPL = "https://{device}:8765/nvue_v1/?rev=applied&filled=false"
-CANDIDATE_URL_TMPL = "https://{device}:8765/nvue_v1/?rev={revision}&diff=applied&filled=false"
+CANDIDATE_URL_TMPL = "https://{device}:8765/nvue_v1/?rev={revision}&filled=false"
 
 MAX_WORKERS = 200
 TIMEOUT = (5, 10)  # (connect, read)
@@ -57,4 +58,4 @@ if __name__ == "__main__":
     for d, r in results.items():
         if r.get("ok") and isinstance(r.get("data"), dict):
 
-            print(r['data'])
+            print(json.dumps(r['data']))

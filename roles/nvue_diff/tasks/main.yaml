@@ -27,14 +27,25 @@
 #    /usr/bin/python3 /etc/ansible/scripts/get_diff.py {{ groups['all'] | join(' ') }}
 #  register: bgp_check
 
-- name: Execute script with inventory devices
+- name: Get candidate config
   command: >
     /usr/bin/python3 /etc/ansible/scripts/get_diff.py 
     --devices {{ inventory_hostname }} 
     --config_type candidate
     --revision {{ revision.revid }}
-  register: diff_check
+  register: candidate
+
+- name: Get applied config
+  command: >
+    /usr/bin/python3 /etc/ansible/scripts/get_diff.py 
+    --devices {{ inventory_hostname }} 
+    --config_type applied
+  register: applied
+
+- name: Compute structured diff (base -> target)
+  ansible.builtin.set_fact:
+    nvue_fact_diff: "{{ applied.stdout | from_json | ansible.utils.fact_diff(candidate.stdout | from_json) }}"
 
 - name: Print Out
   ansible.builtin.debug:
-    - msg: "{{ diff_check }}"
+    msg: "{{ nvue_fact_diff }}"

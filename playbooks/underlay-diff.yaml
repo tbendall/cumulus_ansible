@@ -102,13 +102,13 @@
       include_role:
         name: nvue_diff
 
-    - name: Render NVUE diff report
-      ansible.builtin.template:
-        src: "/etc/ansible/templates/report.md.j2"
-        dest: "reports/{{ inventory_hostname }}-nvue-diff-{{ revision.revid }}.md"
-      vars:
-        nvue_diff_base: "running"
-        nvue_revid: "{{ revision.revid }}"
+#    - name: Render NVUE diff report
+#      ansible.builtin.template:
+#        src: "/etc/ansible/templates/report.md.j2"
+#        dest: "reports/{{ inventory_hostname }}-nvue-diff-{{ revision.revid }}.md"
+#      vars:
+#        nvue_diff_base: "running"
+#        nvue_revid: "{{ revision.revid }}"
 
 
 
